@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3FB98863-77C5-4459-B9BF-2AF1C904323C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NCrawler.Demo</RootNamespace>
+    <AssemblyName>NCrawler.Demo</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=2.1.10.754, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Repository\Autofac\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\AdvancedCrawlDemo.cs">
+      <Link>AdvancedCrawlDemo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\CrawlUsingDb4oStorage.cs">
+      <Link>CrawlUsingDb4oStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\CrawlUsingDbStorage.cs">
+      <Link>CrawlUsingDbStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\CrawlUsingEsentStorage.cs">
+      <Link>CrawlUsingEsentStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\CrawlUsingIsolatedStorage.cs">
+      <Link>CrawlUsingIsolatedStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\Extensions\TextWriterExtensions.cs">
+      <Link>Extensions\TextWriterExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\FindBrokenLinksDemo.cs">
+      <Link>FindBrokenLinksDemo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\IndexerDemo.cs">
+      <Link>IndexerDemo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\Program.cs">
+      <Link>Program.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.Demo\SimpleCrawlDemo.cs">
+      <Link>SimpleCrawlDemo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Properties\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NCrawler.Db4oServices\NCrawler.Db4oServices.csproj">
+      <Project>{AB97F9EB-306D-404B-98C9-AD4BB19A8EA0}</Project>
+      <Name>NCrawler.Db4oServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler.DbServices\NCrawler.DbServices.csproj">
+      <Project>{79D94326-68A1-4802-A939-E6F4122CAB13}</Project>
+      <Name>NCrawler.DbServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler.EsentServices\NCrawler.EsentServices.csproj">
+      <Project>{D154BD39-17D7-4EEA-AD86-10804514FAE0}</Project>
+      <Name>NCrawler.EsentServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler.HtmlProcessor\NCrawler.HtmlProcessor.csproj">
+      <Project>{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}</Project>
+      <Name>NCrawler.HtmlProcessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler.IFilterProcessor\NCrawler.IFilterProcessor.csproj">
+      <Project>{FC4BAAF7-5749-4149-8D3C-3DA21A129999}</Project>
+      <Name>NCrawler.IFilterProcessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler.IsolatedStorageServices\NCrawler.IsolatedStorageServices.csproj">
+      <Project>{C0A2CEA3-798D-4F19-A3F0-41A0522C21E1}</Project>
+      <Name>NCrawler.IsolatedStorageServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler.iTextSharpPdfProcessor\NCrawler.iTextSharpPdfProcessor.csproj">
+      <Project>{1CC6DC28-0B0B-445D-8AE3-07F9823A9036}</Project>
+      <Name>NCrawler.iTextSharpPdfProcessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler.LanguageDetection.Google\NCrawler.LanguageDetection.Google.csproj">
+      <Project>{0E707ADD-8F93-4E65-BAE7-534D4C844060}</Project>
+      <Name>NCrawler.LanguageDetection.Google</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler.MP3Processor\NCrawler.MP3Processor.csproj">
+      <Project>{E9FEC929-F46C-4A72-817D-CDF9E3EA794D}</Project>
+      <Name>NCrawler.MP3Processor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler\NCrawler.csproj">
+      <Project>{5E4DF149-F650-4152-8410-586FB9CCF644}</Project>
+      <Name>NCrawler</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

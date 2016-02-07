@@ -1,0 +1,204 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler", "NCrawler\NCrawler.csproj", "{5E4DF149-F650-4152-8410-586FB9CCF644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.HtmlProcessor", "NCrawler.HtmlProcessor\NCrawler.HtmlProcessor.csproj", "{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.IFilterProcessor", "NCrawler.IFilterProcessor\NCrawler.IFilterProcessor.csproj", "{FC4BAAF7-5749-4149-8D3C-3DA21A129999}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.Demo", "NCrawler.Demo\NCrawler.Demo.csproj", "{3FB98863-77C5-4459-B9BF-2AF1C904323C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.LanguageDetection.Google", "NCrawler.LanguageDetection.Google\NCrawler.LanguageDetection.Google.csproj", "{0E707ADD-8F93-4E65-BAE7-534D4C844060}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.iTextSharpPdfProcessor", "NCrawler.iTextSharpPdfProcessor\NCrawler.iTextSharpPdfProcessor.csproj", "{1CC6DC28-0B0B-445D-8AE3-07F9823A9036}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.DbServices", "NCrawler.DbServices\NCrawler.DbServices.csproj", "{79D94326-68A1-4802-A939-E6F4122CAB13}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{BF44D7D9-3CDF-4A7D-89F9-A80A04BB418C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EPocalipse.IFilter", "EPocalipse.IFilter", "{9E2B555A-7AE1-41D4-92C6-9A4C20C08660}"
+	ProjectSection(SolutionItems) = preProject
+		Repository\EPocalipse.IFilter\EPocalipse.IFilter.dll = Repository\EPocalipse.IFilter\EPocalipse.IFilter.dll
+		Repository\EPocalipse.IFilter\EPocalipse.IFilter.pdb = Repository\EPocalipse.IFilter\EPocalipse.IFilter.pdb
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HtmlAgilityPack", "HtmlAgilityPack", "{8955D77C-2B78-4BD9-A54F-C3AE273948F8}"
+	ProjectSection(SolutionItems) = preProject
+		Repository\HtmlAgilityPack\HtmlAgilityPack.dll = Repository\HtmlAgilityPack\HtmlAgilityPack.dll
+		Repository\HtmlAgilityPack\HtmlAgilityPack.pdb = Repository\HtmlAgilityPack\HtmlAgilityPack.pdb
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTextSharp", "iTextSharp", "{24AA5339-E44E-4A34-AB76-E6D3C70330D6}"
+	ProjectSection(SolutionItems) = preProject
+		Repository\iTextSharp\itextsharp.dll = Repository\iTextSharp\itextsharp.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild", "MSBuild", "{5B6B889B-9A6F-4456-9F76-B4E1DB5E203E}"
+	ProjectSection(SolutionItems) = preProject
+		Build.bat = Build.bat
+		NCrawler.proj = NCrawler.proj
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.MP3Processor", "NCrawler.MP3Processor\NCrawler.MP3Processor.csproj", "{E9FEC929-F46C-4A72-817D-CDF9E3EA794D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HundredMilesSoftware", "HundredMilesSoftware", "{19BDD7FB-9DDD-490A-AF79-E57B2E5512AB}"
+	ProjectSection(SolutionItems) = preProject
+		Repository\HundredMilesSoftware\UltraID3Lib.dll = Repository\HundredMilesSoftware\UltraID3Lib.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ILMerge", "ILMerge", "{DDB7D096-1E93-4814-951F-65B0C4B5D8C9}"
+	ProjectSection(SolutionItems) = preProject
+		Repository\ILMerge\ILMerge.exe = Repository\ILMerge\ILMerge.exe
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.IsolatedStorageServices", "NCrawler.IsolatedStorageServices\NCrawler.IsolatedStorageServices.csproj", "{C0A2CEA3-798D-4F19-A3F0-41A0522C21E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.Console", "NCrawler.Console\NCrawler.Console.csproj", "{E316AE86-5281-482B-9C90-1661CC4AB0BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.FileStorageServices", "NCrawler.FileStorageServices\NCrawler.FileStorageServices.csproj", "{5D83F82B-CAAD-4EA9-85B2-CE6054BCAB55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Autofac", "Autofac", "{C3C6449B-03BE-4D0F-9277-9A3488E123E8}"
+	ProjectSection(SolutionItems) = preProject
+		Repository\Autofac\Autofac.dll = Repository\Autofac\Autofac.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Esent", "Esent", "{224ECE93-9F54-4974-A36D-3CBA62EB173F}"
+	ProjectSection(SolutionItems) = preProject
+		Repository\ManagedEsent\Esent.Interop.dll = Repository\ManagedEsent\Esent.Interop.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Db4o", "Db4o", "{DFC38401-5FC1-4E23-98F8-1F2AF0BE61C9}"
+	ProjectSection(SolutionItems) = preProject
+		Repository\Db4o\Db4objects.Db4o.dll = Repository\Db4o\Db4objects.Db4o.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.EsentServices", "NCrawler.EsentServices\NCrawler.EsentServices.csproj", "{D154BD39-17D7-4EEA-AD86-10804514FAE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.Db4oServices", "NCrawler.Db4oServices\NCrawler.Db4oServices.csproj", "{AB97F9EB-306D-404B-98C9-AD4BB19A8EA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler.SitemapProcessor", "NCrawler.SitemapProcessor\NCrawler.SitemapProcessor.csproj", "{F97110DF-E9F5-493D-8E49-22EFB63761B4}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 14
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs08
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = NCrawler.Demo\\NCrawler.Demo.csproj
+		SccProjectName1 = NCrawler.Demo
+		SccLocalPath1 = NCrawler.Demo
+		SccProjectUniqueName2 = NCrawler.HtmlProcessor\\NCrawler.HtmlProcessor.csproj
+		SccProjectName2 = NCrawler.HtmlProcessor
+		SccLocalPath2 = NCrawler.HtmlProcessor
+		SccProjectUniqueName3 = NCrawler.IFilterProcessor\\NCrawler.IFilterProcessor.csproj
+		SccProjectName3 = NCrawler.IFilterProcessor
+		SccLocalPath3 = NCrawler.IFilterProcessor
+		SccProjectUniqueName4 = NCrawler\\NCrawler.csproj
+		SccProjectName4 = NCrawler
+		SccLocalPath4 = NCrawler
+		SccProjectUniqueName5 = NCrawler.LanguageDetection.Google\\NCrawler.LanguageDetection.Google.csproj
+		SccProjectName5 = NCrawler.LanguageDetection.Google
+		SccLocalPath5 = NCrawler.LanguageDetection.Google
+		SccProjectUniqueName6 = NCrawler.iTextSharpPdfProcessor\\NCrawler.iTextSharpPdfProcessor.csproj
+		SccProjectName6 = NCrawler.iTextSharpPdfProcessor
+		SccLocalPath6 = NCrawler.iTextSharpPdfProcessor
+		SccProjectUniqueName7 = NCrawler.DbServices\\NCrawler.DbServices.csproj
+		SccProjectName7 = NCrawler.DbServices
+		SccLocalPath7 = NCrawler.DbServices
+		SccProjectUniqueName8 = NCrawler.MP3Processor\\NCrawler.MP3Processor.csproj
+		SccProjectName8 = NCrawler.MP3Processor
+		SccLocalPath8 = NCrawler.MP3Processor
+		SccProjectUniqueName9 = NCrawler.IsolatedStorageServices\\NCrawler.IsolatedStorageServices.csproj
+		SccProjectName9 = NCrawler.IsolatedStorageServices
+		SccLocalPath9 = NCrawler.IsolatedStorageServices
+		SccProjectUniqueName10 = NCrawler.FileStorageServices\\NCrawler.FileStorageServices.csproj
+		SccProjectName10 = NCrawler.FileStorageServices
+		SccLocalPath10 = NCrawler.FileStorageServices
+		SccProjectUniqueName11 = NCrawler.EsentServices\\NCrawler.EsentServices.csproj
+		SccProjectName11 = NCrawler.EsentServices
+		SccLocalPath11 = NCrawler.EsentServices
+		SccProjectUniqueName12 = NCrawler.Db4oServices\\NCrawler.Db4oServices.csproj
+		SccProjectName12 = NCrawler.Db4oServices
+		SccLocalPath12 = NCrawler.Db4oServices
+		SccProjectUniqueName13 = NCrawler.SitemapProcessor\\NCrawler.SitemapProcessor.csproj
+		SccProjectName13 = NCrawler.SitemapProcessor
+		SccLocalPath13 = NCrawler.SitemapProcessor
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E4DF149-F650-4152-8410-586FB9CCF644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E4DF149-F650-4152-8410-586FB9CCF644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E4DF149-F650-4152-8410-586FB9CCF644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E4DF149-F650-4152-8410-586FB9CCF644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC4BAAF7-5749-4149-8D3C-3DA21A129999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC4BAAF7-5749-4149-8D3C-3DA21A129999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC4BAAF7-5749-4149-8D3C-3DA21A129999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC4BAAF7-5749-4149-8D3C-3DA21A129999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FB98863-77C5-4459-B9BF-2AF1C904323C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FB98863-77C5-4459-B9BF-2AF1C904323C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FB98863-77C5-4459-B9BF-2AF1C904323C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FB98863-77C5-4459-B9BF-2AF1C904323C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CC6DC28-0B0B-445D-8AE3-07F9823A9036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CC6DC28-0B0B-445D-8AE3-07F9823A9036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CC6DC28-0B0B-445D-8AE3-07F9823A9036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CC6DC28-0B0B-445D-8AE3-07F9823A9036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D94326-68A1-4802-A939-E6F4122CAB13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D94326-68A1-4802-A939-E6F4122CAB13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D94326-68A1-4802-A939-E6F4122CAB13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D94326-68A1-4802-A939-E6F4122CAB13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9FEC929-F46C-4A72-817D-CDF9E3EA794D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9FEC929-F46C-4A72-817D-CDF9E3EA794D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9FEC929-F46C-4A72-817D-CDF9E3EA794D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9FEC929-F46C-4A72-817D-CDF9E3EA794D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0A2CEA3-798D-4F19-A3F0-41A0522C21E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0A2CEA3-798D-4F19-A3F0-41A0522C21E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0A2CEA3-798D-4F19-A3F0-41A0522C21E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0A2CEA3-798D-4F19-A3F0-41A0522C21E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E316AE86-5281-482B-9C90-1661CC4AB0BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E316AE86-5281-482B-9C90-1661CC4AB0BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E316AE86-5281-482B-9C90-1661CC4AB0BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E316AE86-5281-482B-9C90-1661CC4AB0BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D83F82B-CAAD-4EA9-85B2-CE6054BCAB55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D83F82B-CAAD-4EA9-85B2-CE6054BCAB55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D83F82B-CAAD-4EA9-85B2-CE6054BCAB55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D83F82B-CAAD-4EA9-85B2-CE6054BCAB55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D154BD39-17D7-4EEA-AD86-10804514FAE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D154BD39-17D7-4EEA-AD86-10804514FAE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D154BD39-17D7-4EEA-AD86-10804514FAE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D154BD39-17D7-4EEA-AD86-10804514FAE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB97F9EB-306D-404B-98C9-AD4BB19A8EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB97F9EB-306D-404B-98C9-AD4BB19A8EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB97F9EB-306D-404B-98C9-AD4BB19A8EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB97F9EB-306D-404B-98C9-AD4BB19A8EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F97110DF-E9F5-493D-8E49-22EFB63761B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F97110DF-E9F5-493D-8E49-22EFB63761B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F97110DF-E9F5-493D-8E49-22EFB63761B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F97110DF-E9F5-493D-8E49-22EFB63761B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9E2B555A-7AE1-41D4-92C6-9A4C20C08660} = {BF44D7D9-3CDF-4A7D-89F9-A80A04BB418C}
+		{8955D77C-2B78-4BD9-A54F-C3AE273948F8} = {BF44D7D9-3CDF-4A7D-89F9-A80A04BB418C}
+		{24AA5339-E44E-4A34-AB76-E6D3C70330D6} = {BF44D7D9-3CDF-4A7D-89F9-A80A04BB418C}
+		{5B6B889B-9A6F-4456-9F76-B4E1DB5E203E} = {BF44D7D9-3CDF-4A7D-89F9-A80A04BB418C}
+		{19BDD7FB-9DDD-490A-AF79-E57B2E5512AB} = {BF44D7D9-3CDF-4A7D-89F9-A80A04BB418C}
+		{DDB7D096-1E93-4814-951F-65B0C4B5D8C9} = {BF44D7D9-3CDF-4A7D-89F9-A80A04BB418C}
+		{C3C6449B-03BE-4D0F-9277-9A3488E123E8} = {BF44D7D9-3CDF-4A7D-89F9-A80A04BB418C}
+		{224ECE93-9F54-4974-A36D-3CBA62EB173F} = {BF44D7D9-3CDF-4A7D-89F9-A80A04BB418C}
+		{DFC38401-5FC1-4E23-98F8-1F2AF0BE61C9} = {BF44D7D9-3CDF-4A7D-89F9-A80A04BB418C}
+	EndGlobalSection
+EndGlobal

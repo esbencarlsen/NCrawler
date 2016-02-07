@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SqlCommandVariables xmlns="urn:Microsoft.VisualStudio.Data.Schema.Package.SqlCmdVars">
+  <Version>1.0</Version>
+  <Properties>
+    <Property>
+      <PropertyName>Path1</PropertyName>
+      <PropertyValue>C:\NCrawler\Net 4.0\NCrawler.DbServices\</PropertyValue>
+    </Property>
+    <Property>
+      <PropertyName>Path2</PropertyName>
+      <PropertyValue>C:\NCrawler\Net 4.0\NCrawler.DbServices\</PropertyValue>
+    </Property>
+  </Properties>
+</SqlCommandVariables>

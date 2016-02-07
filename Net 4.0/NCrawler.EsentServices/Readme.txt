@@ -1,0 +1,1 @@
+﻿Implementation of history service and queuing service in ncrawler using Extensible Storage Engine from MS: http://msdn.microsoft.com/en-us/library/ms684493.aspx

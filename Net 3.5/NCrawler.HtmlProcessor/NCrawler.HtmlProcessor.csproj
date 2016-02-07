@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NCrawler.HtmlProcessor</RootNamespace>
+    <AssemblyName>NCrawler.HtmlProcessor</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.3.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Repository\HtmlAgilityPack\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Net 4.0\NCrawler.HtmlProcessor\ContentCrawlerRules.cs">
+      <Link>ContentCrawlerRules.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.HtmlProcessor\EMailEntityExtractionProcessor.cs">
+      <Link>EMailEntityExtractionProcessor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.HtmlProcessor\Extensions\ExtendedHtmlUtility.cs">
+      <Link>Extensions\ExtendedHtmlUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.HtmlProcessor\Extensions\HtmlAgilityPackExtensions.cs">
+      <Link>Extensions\HtmlAgilityPackExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.HtmlProcessor\HtmlDocumentProcessor.cs">
+      <Link>HtmlDocumentProcessor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.HtmlProcessor\Interfaces\ISubstitution.cs">
+      <Link>Interfaces\ISubstitution.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.HtmlProcessor\LinkExtractionProcessor.cs">
+      <Link>LinkExtractionProcessor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.HtmlProcessor\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.HtmlProcessor\RegexSubstitution.cs">
+      <Link>RegexSubstitution.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler.HtmlProcessor\TextDocumentProcessor.cs">
+      <Link>TextDocumentProcessor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Properties\SharedAssemblyInfo.cs">
+      <Link>Extensions\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NCrawler\NCrawler.csproj">
+      <Project>{5E4DF149-F650-4152-8410-586FB9CCF644}</Project>
+      <Name>NCrawler</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

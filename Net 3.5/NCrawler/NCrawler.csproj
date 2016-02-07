@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5E4DF149-F650-4152-8410-586FB9CCF644}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NCrawler</RootNamespace>
+    <AssemblyName>NCrawler</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <StartupObject>
+    </StartupObject>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=2.1.10.754, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Repository\Autofac\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Net 4.0\NCrawler\Crawler.cs">
+      <Link>Crawler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Crawler.Events.cs">
+      <Link>Crawler.Events.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Crawler.Properties.cs">
+      <Link>Crawler.Properties.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\CrawlerQueueEntry.cs">
+      <Link>CrawlerQueueEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\CrawlStep.cs">
+      <Link>CrawlStep.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Events\AfterDownloadEventArgs.cs">
+      <Link>Events\AfterDownloadEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Events\BeforeDownloadEventArgs.cs">
+      <Link>Events\BeforeDownloadEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Events\CrawlFinishedEventArgs.cs">
+      <Link>Events\CrawlFinishedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Events\DownloadExceptionEventArgs.cs">
+      <Link>Events\DownloadExceptionEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Events\DownloadProgressEventArgs.cs">
+      <Link>Events\DownloadProgressEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Events\PipelineExceptionEventArgs.cs">
+      <Link>Events\PipelineExceptionEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Extensions\AspectExtensions.cs">
+      <Link>Extensions\AspectExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Extensions\EventHandlerExtensions.cs">
+      <Link>Extensions\EventHandlerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Extensions\IAsyncResultExtensions.cs">
+      <Link>Extensions\IAsyncResultExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Extensions\IEnumerableExtensions.cs">
+      <Link>Extensions\IEnumerableExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Extensions\ObjectExtensions.cs">
+      <Link>Extensions\ObjectExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Extensions\StreamExtensions.cs">
+      <Link>Extensions\StreamExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Extensions\StringExtensions.cs">
+      <Link>Extensions\StringExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Extensions\UriExtensions.cs">
+      <Link>Extensions\UriExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Extensions\UrlExtensions.cs">
+      <Link>Extensions\UrlExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\ICache.cs">
+      <Link>Interfaces\ICache.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\ICrawlerHistory.cs">
+      <Link>Interfaces\ICrawlerHistory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\ICrawlerQueue.cs">
+      <Link>Interfaces\ICrawlerQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\ICrawlerRules.cs">
+      <Link>Interfaces\ICrawlerRules.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\IFilter.cs">
+      <Link>Interfaces\IFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\ILog.cs">
+      <Link>Interfaces\ILog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\IPipelineStep.cs">
+      <Link>Interfaces\IPipelineStep.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\IPipelineStepWithTimeout.cs">
+      <Link>Interfaces\IPipelineStepWithTimeout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\IRobot.cs">
+      <Link>Interfaces\IRobot.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\ITaskRunner.cs">
+      <Link>Interfaces\ITaskRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Interfaces\IWebDownloader.cs">
+      <Link>Interfaces\IWebDownloader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\NCrawlerModule.cs">
+      <Link>NCrawlerModule.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Properties\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\PropertyBag.cs">
+      <Link>PropertyBag.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\RequestState.cs">
+      <Link>RequestState.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Services\CrawlerRulesService.cs">
+      <Link>Services\CrawlerRulesService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Services\DummyRobot.cs">
+      <Link>Services\DummyRobot.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Services\InMemoryCrawlerHistoryService.cs">
+      <Link>Services\InMemoryCrawlerHistoryService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Services\InMemoryCrawlerQueueService.cs">
+      <Link>Services\InMemoryCrawlerQueueService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Services\LambdaFilter.cs">
+      <Link>Services\LambdaFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Services\RegexFilter.cs">
+      <Link>Services\RegexFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Services\RobotService.cs">
+      <Link>Services\RobotService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Services\SystemTraceLoggerService.cs">
+      <Link>Services\SystemTraceLoggerService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Services\ThreadTaskRunnerService.cs">
+      <Link>Services\ThreadTaskRunnerService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Services\WebDownloaderV2.cs">
+      <Link>Services\WebDownloaderV2.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Utils\AspectF.cs">
+      <Link>Utils\AspectF.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Utils\CrawlerQueueServiceBase.cs">
+      <Link>Utils\CrawlerQueueServiceBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Utils\DictionaryCache.cs">
+      <Link>Utils\DictionaryCache.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Utils\DisposableBase.cs">
+      <Link>Utils\DisposableBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Utils\FileSystemHelpers.cs">
+      <Link>Utils\FileSystemHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Utils\HistoryServiceBase.cs">
+      <Link>Utils\HistoryServiceBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Utils\MemoryStreamWithFileBackingStore.cs">
+      <Link>Utils\MemoryStreamWithFileBackingStore.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Utils\TempFile.cs">
+      <Link>Utils\TempFile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Net 4.0\NCrawler\Utils\ThreadSafeCounter.cs">
+      <Link>Utils\ThreadSafeCounter.cs</Link>
+    </Compile>
+    <Compile Include="Extensions\IsolatedStorageFileExtensions.cs" />
+    <Compile Include="Utils\Lazy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Sql.Server.Express.9.2">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2005 Express Edition SP2 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

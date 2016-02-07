@@ -1,0 +1,76 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+	<PropertyGroup>
+		<BuildConfig>Release</BuildConfig>
+		<BinariesFolder>$(MSBuildProjectDirectory)\Binaries</BinariesFolder>
+		<MergedOutputPath>$(MSBuildProjectDirectory)\Binaries\Merged</MergedOutputPath>
+		<NCrawlMergedOutputPath>$(MSBuildProjectDirectory)\Binaries\NCrawl</NCrawlMergedOutputPath>
+		<ILMerge>$(MSBuildProjectDirectory)\Repository\ILMerge\ILMerge.exe</ILMerge>
+	</PropertyGroup>
+
+	<Target Name="Clean">
+		<MSBuild Projects="NCrawler.sln" StopOnFirstFailure="true" Properties="Configuration=Release" BuildInParallel="true" Targets="Clean"/>
+		<RemoveDir Directories="$(BinariesFolder)" />
+	</Target>
+
+	<Target Name="Build">
+		<MSBuild Projects="NCrawler.sln" StopOnFirstFailure="true" Properties="Configuration=Release" BuildInParallel="true" Targets="Rebuild" />
+	</Target>
+
+	<Target Name="CopyToBinFolder">
+		<ItemGroup>
+			<BinaryFiles Include="$(MSBuildProjectDirectory)\NCrawler\bin\$(BuildConfig)\*.*" />
+			<BinaryFiles Include="$(MSBuildProjectDirectory)\NCrawler.HtmlProcessor\bin\$(BuildConfig)\*.*" />
+			<BinaryFiles Include="$(MSBuildProjectDirectory)\NCrawler.IFilterProcessor\bin\$(BuildConfig)\*.*" />
+			<BinaryFiles Include="$(MSBuildProjectDirectory)\NCrawler.iTextSharpProcessor\bin\$(BuildConfig)\*.*" />
+			<BinaryFiles Include="$(MSBuildProjectDirectory)\NCrawler.LanguageDetection.Google\bin\$(BuildConfig)\*.*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(BinaryFiles)"
+			  DestinationFolder="$(BinariesFolder)"
+			  ContinueOnError="false" />
+
+		<ItemGroup>
+			<DemoBinaryFiles
+				Include="$(MSBuildProjectDirectory)\NCrawler.Demo\bin\Release\*.*"
+				Exclude="$(MSBuildProjectDirectory)\NCrawler.Demo\bin\Release\*.vshost.exe*"  />
+		</ItemGroup>
+		<Copy SourceFiles="@(DemoBinaryFiles)"
+			  DestinationFolder="$(BinariesFolder)\Demo"
+			  ContinueOnError="false" />
+	</Target>
+
+	<Target Name="Merge">
+		<ItemGroup>
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler\bin\$(BuildConfig)\NCrawler.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler\bin\$(BuildConfig)\Autofac.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.IsolatedStorageServices\bin\$(BuildConfig)\NCrawler.IsolatedStorageServices.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.DbServices\bin\$(BuildConfig)\NCrawler.DbServices.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.HtmlProcessor\bin\$(BuildConfig)\NCrawler.HtmlProcessor.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.HtmlProcessor\bin\$(BuildConfig)\HtmlAgilityPack.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.IFilterProcessor\bin\$(BuildConfig)\NCrawler.IFilterProcessor.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.IFilterProcessor\bin\$(BuildConfig)\EPocalipse.IFilter.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.LanguageDetection.Google\bin\$(BuildConfig)\NCrawler.LanguageDetection.Google.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.MP3Processor\bin\$(BuildConfig)\NCrawler.MP3Processor.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.MP3Processor\bin\$(BuildConfig)\UltraID3Lib.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.FileStorageServices\bin\$(BuildConfig)\NCrawler.FileStorageServices.dll" />
+			<MergeAsm Include="$(MSBuildProjectDirectory)\NCrawler.SitemapProcessor\bin\$(BuildConfig)\NCrawler.SitemapProcessor.dll" />
+		</ItemGroup>
+
+		<MakeDir Directories="$(MergedOutputPath)" Condition="!EXISTS($(MergedOutputPath))"/>
+		<Message Text="Merging: @(MergeAsm->'%(Filename)', ' and ') into $(MergedOutputPath)\NCrawler.dll" />
+		<Exec Command="&quot;$(ILMerge)&quot; /ndebug /targetplatform:v4,&quot;$(MSBuildBinPath)&quot; /target:library /out:&quot;$(MergedOutputPath)\NCrawler.dll&quot; @(MergeAsm->'&quot;%(FullPath)&quot;', ' ') " />
+	</Target>
+
+	<Target Name="MergeNCrawlerConsole">
+		<ItemGroup>
+			<MergeAsmNCrawlConsole Include="$(MSBuildProjectDirectory)\NCrawler.Console\bin\$(BuildConfig)\NCrawl.exe" />
+			<MergeAsmNCrawlConsole Include="$(MSBuildProjectDirectory)\NCrawler.Console\bin\$(BuildConfig)\*.dll" />
+		</ItemGroup>
+
+		<MakeDir Directories="$(NCrawlMergedOutputPath)" Condition="!EXISTS($(NCrawlMergedOutputPath))"/>
+		<Message Text="Merging: @(MergeAsmNCrawlConsole->'%(Filename)%(Extension)', ' and ') into $(NCrawlMergedOutputPath)\NCrawl.exe" />
+		<Exec Command="&quot;$(ILMerge)&quot; /ndebug /targetplatform:v4,&quot;$(MSBuildBinPath)&quot; /target:exe /out:&quot;$(NCrawlMergedOutputPath)\NCrawl.exe&quot; @(MergeAsmNCrawlConsole->'&quot;%(FullPath)&quot;', ' ') " />
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\NCrawler.Console\bin\$(BuildConfig)\NCrawl.exe.config"
+			  DestinationFolder="$(NCrawlMergedOutputPath)"
+			  ContinueOnError="false" />
+	</Target>
+</Project>

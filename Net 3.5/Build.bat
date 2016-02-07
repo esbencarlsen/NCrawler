@@ -1,0 +1,1 @@
+"%SystemRoot%\Microsoft.NET\Framework\v3.5\msbuild.exe" "%~dp0\NCrawler.proj" /t:Build;Merge;MergeNCrawlerConsole
