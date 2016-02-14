@@ -181,10 +181,7 @@ namespace NCrawler.Test
 	{
 		private readonly List<CrawlStep> _steps = new List<CrawlStep>();
 
-		public List<CrawlStep> Steps
-		{
-			get{ return _steps; }
-		}
+		public List<CrawlStep> Steps => _steps;
 
 		public void Process(Crawler crawler, PropertyBag propertyBag)
 		{

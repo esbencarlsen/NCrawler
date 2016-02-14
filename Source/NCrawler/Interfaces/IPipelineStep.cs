@@ -2,6 +2,13 @@
 {
 	public interface IPipelineStep
 	{
-		void Process(Crawler crawler, PropertyBag propertyBag);
+		/// <summary>
+		/// Return true to continue
+		/// </summary>
+		/// <param name="propertyBag"></param>
+		/// <returns></returns>
+		bool Process(PropertyBag propertyBag);
+
+		bool ProcessInParallel { get; }
 	}
 }

@@ -16,10 +16,7 @@ namespace NCrawler.IEProcessor
 	{
 		#region IPipelineStepWithTimeout Members
 
-		public TimeSpan ProcessorTimeout
-		{
-			get { return TimeSpan.FromSeconds(30); }
-		}
+		public TimeSpan ProcessorTimeout => TimeSpan.FromSeconds(30);
 
 		public override void Process(Crawler crawler, PropertyBag propertyBag)
 		{

@@ -45,9 +45,9 @@ namespace NCrawler.HtmlProcessor
 
 		public virtual void Process(Crawler crawler, PropertyBag propertyBag)
 		{
-			AspectF.Define.
-				NotNull(crawler, "crawler").
-				NotNull(propertyBag, "propertyBag");
+			//AspectF.Define
+			//	.NotNull(crawler, "crawler")
+			//	.NotNull(propertyBag, "propertyBag");
 
 			if (propertyBag.StatusCode != HttpStatusCode.OK)
 			{

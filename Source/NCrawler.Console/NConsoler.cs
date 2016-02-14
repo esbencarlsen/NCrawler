@@ -64,10 +64,7 @@ namespace NConsoler
 
 		#region Instance Properties
 
-		private bool IsMulticommand
-		{
-			get { return _actionMethods.Count > 1; }
-		}
+		private bool IsMulticommand => _actionMethods.Count > 1;
 
 		#endregion
 

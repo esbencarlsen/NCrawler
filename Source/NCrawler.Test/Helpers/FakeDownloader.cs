@@ -25,7 +25,6 @@ namespace NCrawler.Test.Helpers
 					ContentType = "text/html",
 					Headers = null,
 					IsMutuallyAuthenticated = false,
-					IsFromCache = false,
 					LastModified = DateTime.UtcNow,
 					Method = "GET",
 					ProtocolVersion = new Version(3, 0),

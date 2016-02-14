@@ -90,10 +90,7 @@ namespace NCrawler.LanguageDetection.Google
 			}
 		}
 
-		public TimeSpan ProcessorTimeout
-		{
-			get { return TimeSpan.FromSeconds(10); }
-		}
+		public TimeSpan ProcessorTimeout => TimeSpan.FromSeconds(10);
 
 		#endregion
 	}

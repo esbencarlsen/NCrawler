@@ -13,7 +13,6 @@ namespace NCrawler.Utils
 		#region Fields
 
 		private MemoryStream _memoryStream = new MemoryStream();
-		private long _bytesWritten;
 		private FileStream _fileStoreStream;
 		private readonly int _bufferSize;
 		private TempFile _tempFile;
@@ -41,20 +40,11 @@ namespace NCrawler.Utils
 
 		#region Instance Properties
 
-		public override bool CanRead
-		{
-			get { return false; }
-		}
+		public override bool CanRead => false;
 
-		public override bool CanSeek
-		{
-			get { return false; }
-		}
+		public override bool CanSeek => false;
 
-		public override bool CanWrite
-		{
-			get { return true; }
-		}
+		public override bool CanWrite => true;
 
 		public override long Length
 		{
@@ -93,7 +83,6 @@ namespace NCrawler.Utils
 
 		public override void Write(byte[] buffer, int offset, int count)
 		{
-			_bytesWritten += count;
 			if (_memoryStream != null)
 			{
 				_memoryStream.Write(buffer, offset, count);

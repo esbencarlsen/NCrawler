@@ -63,8 +63,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    <Reference Include="Serilog, Version=1.5.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.1.5.14\lib\net45\Serilog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog.FullNetFx, Version=1.5.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.1.5.14\lib\net45\Serilog.FullNetFx.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -75,7 +79,12 @@
     <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -86,66 +95,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\DownloadProgressEventArgs.cs" />
+    <Compile Include="CrawlerConfiguration.cs" />
+    <Compile Include="CrawlerV2.cs" />
+    <Compile Include="CrawlStep.cs" />
     <Compile Include="Extensions\EventHandlerExtensions.cs" />
     <Compile Include="Extensions\IAsyncResultExtensions.cs" />
-    <Compile Include="Interfaces\ICrawlerRules.cs" />
-    <Compile Include="NCrawlerModule.cs" />
-    <Compile Include="CrawlerQueueEntry.cs" />
-    <Compile Include="Events\AfterDownloadEventArgs.cs" />
-    <Compile Include="Events\BeforeDownloadEventArgs.cs" />
-    <Compile Include="Crawler.cs" />
-    <Compile Include="Crawler.Properties.cs">
-      <DependentUpon>Crawler.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Crawler.Events.cs">
-      <DependentUpon>Crawler.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Events\CrawlFinishedEventArgs.cs" />
-    <Compile Include="CrawlStep.cs" />
-    <Compile Include="Events\DownloadExceptionEventArgs.cs" />
     <Compile Include="Extensions\AspectExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="Extensions\UrlExtensions.cs" />
-    <Compile Include="Interfaces\ICache.cs" />
-    <Compile Include="Interfaces\ICrawlerQueue.cs" />
-    <Compile Include="Interfaces\ICrawlerHistory.cs" />
-    <Compile Include="Interfaces\IFilter.cs" />
-    <Compile Include="Interfaces\ILog.cs" />
-    <Compile Include="Interfaces\IPipelineStepWithTimeout.cs" />
-    <Compile Include="Interfaces\IRobot.cs" />
-    <Compile Include="Events\PipelineExceptionEventArgs.cs" />
-    <Compile Include="Interfaces\ITaskRunner.cs" />
-    <Compile Include="Interfaces\IWebDownloader.cs" />
+    <Compile Include="Pipeline\DownloadPipelineStep.cs" />
+    <Compile Include="Pipeline\LambdaFilterPipelineStep.cs" />
     <Compile Include="Properties\SharedAssemblyInfo.cs" />
     <Compile Include="PropertyBag.cs" />
-    <Compile Include="RequestState.cs" />
-    <Compile Include="Services\CrawlerRulesService.cs" />
-    <Compile Include="Services\DummyRobot.cs" />
-    <Compile Include="Services\InMemoryCrawlerQueueService.cs" />
-    <Compile Include="Services\InMemoryCrawlerHistoryService.cs" />
-    <Compile Include="Services\LambdaFilter.cs" />
-    <Compile Include="Services\SystemTraceLoggerService.cs" />
-    <Compile Include="Services\NativeTaskRunnerService.cs" />
-    <Compile Include="Services\RegexFilter.cs" />
     <Compile Include="Services\RobotService.cs" />
-    <Compile Include="Services\ThreadTaskRunnerService.cs" />
-    <Compile Include="Services\WebDownloaderV2.cs" />
     <Compile Include="Utils\AspectF.cs" />
-    <Compile Include="Utils\ColorConsoleTraceListener.cs" />
-    <Compile Include="Utils\CrawlerQueueServiceBase.cs" />
-    <Compile Include="Utils\DictionaryCache.cs" />
     <Compile Include="Utils\DisposableBase.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Interfaces\IPipelineStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\FileSystemHelpers.cs" />
-    <Compile Include="Utils\HistoryServiceBase.cs" />
     <Compile Include="Utils\MemoryStreamWithFileBackingStore.cs" />
-    <Compile Include="Utils\ThreadSafeCounter.cs" />
     <Compile Include="Utils\TempFile.cs" />
   </ItemGroup>
   <ItemGroup>

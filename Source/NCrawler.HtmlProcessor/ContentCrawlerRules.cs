@@ -72,10 +72,7 @@ namespace NCrawler.HtmlProcessor
 		/// <value>
 		/// The has rules.
 		/// </value>
-		protected bool HasLinkStripRules
-		{
-			get { return !_filterLinksRules.IsNull() && _filterLinksRules.Count > 0; }
-		}
+		protected bool HasLinkStripRules => !_filterLinksRules.IsNull() && _filterLinksRules.Count > 0;
 
 		/// <summary>
 		/// Gets a value indicating whether HasTextStripRules.
@@ -83,15 +80,9 @@ namespace NCrawler.HtmlProcessor
 		/// <value>
 		/// The has rules.
 		/// </value>
-		protected bool HasTextStripRules
-		{
-			get { return !_filterTextRules.IsNull() && _filterTextRules.Count > 0; }
-		}
+		protected bool HasTextStripRules => !_filterTextRules.IsNull() && _filterTextRules.Count > 0;
 
-		protected bool HasSubstitutionRules
-		{
-			get { return !Substitutions.IsNull(); }
-		}
+		protected bool HasSubstitutionRules => !Substitutions.IsNull();
 
 		#endregion
 

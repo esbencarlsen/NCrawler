@@ -206,30 +206,18 @@ namespace NGet.Utils
 			(_values as ICollection).CopyTo(array, index);
 		}
 
-		bool ICollection.IsSynchronized
-		{
-			get { return (_values as ICollection).IsSynchronized; }
-		}
+		bool ICollection.IsSynchronized => (_values as ICollection).IsSynchronized;
 
-		object ICollection.SyncRoot
-		{
-			get { return (_values as ICollection).SyncRoot; }
-		}
+		object ICollection.SyncRoot => (_values as ICollection).SyncRoot;
 
 		public void Clear()
 		{
 			_values.Clear();
 		}
 
-		public int Count
-		{
-			get { return _values.Count; }
-		}
+		public int Count => _values.Count;
 
-		public bool IsReadOnly
-		{
-			get { return false; }
-		}
+		public bool IsReadOnly => false;
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
@@ -266,10 +254,7 @@ namespace NGet.Utils
 			(_values as IList).RemoveAt(index);
 		}
 
-		bool IList.IsFixedSize
-		{
-			get { return false; }
-		}
+		bool IList.IsFixedSize => false;
 
 		object IList.this[int index]
 		{

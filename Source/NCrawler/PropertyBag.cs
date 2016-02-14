@@ -5,6 +5,7 @@ using System.Net;
 using System.Runtime.Serialization;
 
 using NCrawler.Extensions;
+using NCrawler.Interfaces;
 
 namespace NCrawler
 {
@@ -69,13 +70,10 @@ namespace NCrawler
 		public string ContentType { get; internal set; }
 
 		[DataMember]
-		public TimeSpan DownloadTime { get; internal set; }
+		public TimeSpan DownloadTime { get; set; }
 
 		[DataMember]
 		public WebHeaderCollection Headers { get; internal set; }
-
-		[DataMember]
-		public bool IsFromCache { get; internal set; }
 
 		[DataMember]
 		public bool IsMutuallyAuthenticated { get; internal set; }
@@ -87,7 +85,7 @@ namespace NCrawler
 		public string Method { get; internal set; }
 
 		[DataMember]
-		public Uri OriginalReferrerUrl { get; internal set; }
+		public Uri OriginalReferrerUrl { get; }
 
 		[DataMember]
 		public string OriginalUrl { get; internal set; }
@@ -114,13 +112,16 @@ namespace NCrawler
 		public string StatusDescription { get; internal set; }
 
 		[DataMember]
-		public CrawlStep Step { get; internal set; }
+		public CrawlStep Step { get; set; }
 
 		[DataMember]
 		public string Text { get; set; }
 
 		[DataMember]
 		public string Title { get; set; }
+
+		[DataMember]
+		public bool StopPipelining { get; set; }
 
 		#endregion
 
@@ -150,26 +151,25 @@ namespace NCrawler
 		{
 			unchecked
 			{
-				int result = (_objPropertyCollection != null ? _objPropertyCollection.GetHashCode() : 0);
-				result = (result*397) ^ (CharacterSet != null ? CharacterSet.GetHashCode() : 0);
-				result = (result*397) ^ (ContentEncoding != null ? ContentEncoding.GetHashCode() : 0);
-				result = (result*397) ^ (ContentType != null ? ContentType.GetHashCode() : 0);
-				result = (result*397) ^ (Headers != null ? Headers.GetHashCode() : 0);
-				result = (result*397) ^ IsFromCache.GetHashCode();
+				int result = _objPropertyCollection?.GetHashCode() ?? 0;
+				result = (result*397) ^ (CharacterSet?.GetHashCode() ?? 0);
+				result = (result*397) ^ (ContentEncoding?.GetHashCode() ?? 0);
+				result = (result*397) ^ (ContentType?.GetHashCode() ?? 0);
+				result = (result*397) ^ (Headers?.GetHashCode() ?? 0);
 				result = (result*397) ^ IsMutuallyAuthenticated.GetHashCode();
 				result = (result*397) ^ LastModified.GetHashCode();
-				result = (result*397) ^ (Method != null ? Method.GetHashCode() : 0);
-				result = (result*397) ^ (OriginalReferrerUrl != null ? OriginalReferrerUrl.GetHashCode() : 0);
-				result = (result*397) ^ (OriginalUrl != null ? OriginalUrl.GetHashCode() : 0);
-				result = (result*397) ^ (ProtocolVersion != null ? ProtocolVersion.GetHashCode() : 0);
-				result = (result*397) ^ (Referrer != null ? Referrer.GetHashCode() : 0);
-				result = (result*397) ^ (ResponseUri != null ? ResponseUri.GetHashCode() : 0);
-				result = (result*397) ^ (Server != null ? Server.GetHashCode() : 0);
+				result = (result*397) ^ (Method?.GetHashCode() ?? 0);
+				result = (result*397) ^ (OriginalReferrerUrl?.GetHashCode() ?? 0);
+				result = (result*397) ^ (OriginalUrl?.GetHashCode() ?? 0);
+				result = (result*397) ^ (ProtocolVersion?.GetHashCode() ?? 0);
+				result = (result*397) ^ (Referrer?.GetHashCode() ?? 0);
+				result = (result*397) ^ (ResponseUri?.GetHashCode() ?? 0);
+				result = (result*397) ^ (Server?.GetHashCode() ?? 0);
 				result = (result*397) ^ StatusCode.GetHashCode();
-				result = (result*397) ^ (StatusDescription != null ? StatusDescription.GetHashCode() : 0);
-				result = (result*397) ^ (Step != null ? Step.GetHashCode() : 0);
-				result = (result*397) ^ (Text != null ? Text.GetHashCode() : 0);
-				result = (result*397) ^ (Title != null ? Title.GetHashCode() : 0);
+				result = (result*397) ^ (StatusDescription?.GetHashCode() ?? 0);
+				result = (result*397) ^ (Step?.GetHashCode() ?? 0);
+				result = (result*397) ^ (Text?.GetHashCode() ?? 0);
+				result = (result*397) ^ (Title?.GetHashCode() ?? 0);
 				result = (result*397) ^ DownloadTime.GetHashCode();
 				return result;
 			}
@@ -228,7 +228,6 @@ namespace NCrawler
 				Equals(other.ContentEncoding, ContentEncoding) &&
 				Equals(other.ContentType, ContentType) &&
 				Equals(other.Headers, Headers) &&
-				other.IsFromCache.Equals(IsFromCache) &&
 				other.IsMutuallyAuthenticated.Equals(IsMutuallyAuthenticated) &&
 				other.LastModified.Equals(LastModified) &&
 				Equals(other.Method, Method) &&
@@ -281,12 +280,12 @@ namespace NCrawler
 			/// <summary>
 			/// The name of the Property
 			/// </summary>
-			public string Name { get; private set; }
+			public string Name { get; }
 
 			/// <summary>
 			/// A pointer to the ultimate client class of the Property / PropertyBag
 			/// </summary>
-			public object Owner { get; private set; }
+			public object Owner { get; }
 
 			/// <summary>
 			/// The property value

@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
-using NCrawler.Interfaces;
 using NCrawler.Utils;
 
 namespace NCrawler.Extensions
@@ -12,87 +11,6 @@ namespace NCrawler.Extensions
 	public static class AspectExtensions
 	{
 		#region Class Methods
-
-		[DebuggerStepThrough]
-		public static AspectF Cache<TReturnType>(this AspectF aspect,
-			ICache cacheResolver, string key)
-		{
-			return aspect.Combine(work => Cache<TReturnType>(aspect, cacheResolver, key, work, cached => cached));
-		}
-
-		[DebuggerStepThrough]
-		public static AspectF CacheList<TItemType, TListType>(this AspectF aspect,
-			ICache cacheResolver, string listCacheKey, Func<TItemType, string> getItemKey)
-			where TListType : IList<TItemType>, new()
-		{
-			return aspect.Combine(work =>
-				{
-					Func<TListType> workDelegate = (Func<TListType>) aspect.WorkDelegate;
-
-					// Replace the actual work delegate with a new delegate so that
-					// when the actual work delegate returns a collection, each item
-					// in the collection is stored in cache individually.
-					Func<TListType> newWorkDelegate = () =>
-						{
-							TListType collection = workDelegate();
-							foreach (TItemType item in collection)
-							{
-								string key = getItemKey(item);
-								cacheResolver.Set(key, item);
-							}
-							return collection;
-						};
-					aspect.WorkDelegate = newWorkDelegate;
-
-					// Get the collection from cache or real source. If collection is returned
-					// from cache, resolve each item in the collection from cache
-					Cache<TListType>(aspect, cacheResolver, listCacheKey, work,
-						cached =>
-							{
-								// Get each item from cache. If any of the item is not in cache
-								// then discard the whole collection from cache and reload the 
-								// collection from source.
-								TListType itemList = new TListType();
-								foreach (TItemType item in cached)
-								{
-									object cachedItem = cacheResolver.Get(getItemKey(item));
-									if (null != cachedItem)
-									{
-										itemList.Add((TItemType) cachedItem);
-									}
-									else
-									{
-										// One of the item is missing from cache. So, discard the 
-										// cached list.
-										return default(TListType);
-									}
-								}
-
-								return itemList;
-							});
-				});
-		}
-
-		[DebuggerStepThrough]
-		public static AspectF CacheRetry<TReturnType>(this AspectF aspect,
-			ICache cacheResolver,
-			string key)
-		{
-			return aspect.Combine(work =>
-				{
-					try
-					{
-						Cache<TReturnType>(aspect, cacheResolver, key, work, cached => cached);
-					}
-					catch
-					{
-						Thread.Sleep(1000);
-
-						//Retry
-						Cache<TReturnType>(aspect, cacheResolver, key, work, cached => cached);
-					}
-				});
-		}
 
 		[DebuggerStepThrough]
 		public static AspectF Delay(this AspectF aspect, int milliseconds)
@@ -146,7 +64,7 @@ namespace NCrawler.Extensions
 						T arg = args[i];
 						if (arg.IsNull() || arg.Equals(defaultvalue))
 						{
-							throw new ArgumentException(string.Format("Parameter at index {0} is null", i));
+							throw new ArgumentException($"Parameter at index {i} is null");
 						}
 					}
 
@@ -164,7 +82,7 @@ namespace NCrawler.Extensions
 						object arg = args[i];
 						if (arg.IsNull())
 						{
-							throw new ArgumentException(string.Format("Parameter at index {0} is null", i));
+							throw new ArgumentException($"Parameter at index {i} is null");
 						}
 					}
 
@@ -383,46 +301,12 @@ namespace NCrawler.Extensions
 				});
 		}
 
-		private static void Cache<TReturnType>(AspectF aspect, ICache cacheResolver,
-			string key, Action work, Func<TReturnType, TReturnType> foundInCache)
-		{
-			object cachedData = cacheResolver.Get(key);
-			if (cachedData.IsNull())
-			{
-				GetListFromSource<TReturnType>(aspect, cacheResolver, key);
-			}
-			else
-			{
-				// Give caller a chance to shape the cached item before it is returned
-				TReturnType cachedType = foundInCache((TReturnType) cachedData);
-				if (cachedType.IsNull())
-				{
-					GetListFromSource<TReturnType>(aspect, cacheResolver, key);
-				}
-				else
-				{
-					aspect.WorkDelegate = new Func<TReturnType>(() => cachedType);
-				}
-			}
-
-			work();
-		}
-
 		private static void DoNothing()
 		{
 		}
 
 		private static void DoNothing(params object[] parameters)
 		{
-		}
-
-		private static void GetListFromSource<TReturnType>(AspectF aspect, ICache cacheResolver, string key)
-		{
-			Func<TReturnType> workDelegate = (Func<TReturnType>) aspect.WorkDelegate;
-			TReturnType realObject = workDelegate();
-			cacheResolver.Add(key, realObject);
-			workDelegate = () => realObject;
-			aspect.WorkDelegate = workDelegate;
 		}
 
 		#endregion

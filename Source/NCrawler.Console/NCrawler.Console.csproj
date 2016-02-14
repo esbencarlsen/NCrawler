@@ -45,10 +45,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=2.4.5.724, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Repository\Autofac.2.4.5.724\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -92,10 +88,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NCrawler.HtmlProcessor\NCrawler.HtmlProcessor.csproj">
-      <Project>{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}</Project>
-      <Name>NCrawler.HtmlProcessor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NCrawler\NCrawler.csproj">
       <Project>{5E4DF149-F650-4152-8410-586FB9CCF644}</Project>
       <Name>NCrawler</Name>
