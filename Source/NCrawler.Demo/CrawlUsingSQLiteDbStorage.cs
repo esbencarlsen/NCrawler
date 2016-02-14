@@ -22,7 +22,7 @@ namespace NCrawler.Demo
 			//  * Step 3 - Try to determine language based on page, based on text extraction, using google language detection
 			//  * Step 4 - Dump the information to the console, this is a custom step, see the DumperStep class
 			using (Crawler c = new Crawler(new Uri("http://ncrawler.codeplex.com"),
-				new HtmlDocumentProcessor(), // Process html
+				new HtmlDocumentProcessorPipelineStep(), // Process html
 				new iTextSharpPdfProcessor.ITextSharpPdfProcessor(), // Add PDF text extraction
 				new GoogleLanguageDetection(), // Add language detection
 				new DumperStep())

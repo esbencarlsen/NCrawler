@@ -1,8 +1,11 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 using NConsoler;
 
 using NCrawler.Console.Extensions;
+using NCrawler.HtmlProcessor;
+using NCrawler.Robots;
 using NCrawler.Utils;
 
 namespace NCrawler.Console
@@ -35,22 +38,12 @@ namespace NCrawler.Console
 				GreaterOrEqual("maximumCrawlTime", maximumCrawlTime, 0).
 				Between("connectiontimeout", connTimeout, 0, 999);
 
-			// Remove limits from Service Point Manager
-			ServicePointManager.MaxServicePoints = 999999;
-			ServicePointManager.DefaultConnectionLimit = 999999;
-			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-			ServicePointManager.CheckCertificateRevocationList = true;
-			ServicePointManager.EnableDnsRoundRobin = true;
-
 			s_showDownloadTimes = showDownloadTimes;
 			//using (Crawler crawler = new Crawler(new Uri(url), new HtmlDocumentProcessor()))
 			//{
 			//	crawler.UserAgent = userAgent;
-			//	crawler.MaximumCrawlCount = maximumCrawlCount <= 0 ? (int?)null : maximumCrawlCount;
 			//	crawler.MaximumHttpDownloadErrors = maximumHttpDownloadErrors <= 0 ? (int?)null : maximumHttpDownloadErrors;
 			//	crawler.MaximumCrawlTime = maximumCrawlTime <= 0 ? (TimeSpan?)null : TimeSpan.FromSeconds(maximumCrawlTime);
-			//	crawler.MaximumCrawlDepth = depth <= 0 ? (int?)null : depth;
-			//	crawler.MaximumThreadCount = threadCount;
 			//	crawler.AdhereToRobotRules = adhereToRobotRules;
 			//	crawler.ConnectionTimeout = connTimeout <= 0 ? (TimeSpan?)null : TimeSpan.FromSeconds(connTimeout);
 			//	crawler.ConnectionReadTimeout = timeout <= 0 ? (TimeSpan?)null : TimeSpan.FromSeconds(timeout);
@@ -61,7 +54,29 @@ namespace NCrawler.Console
 			//}
 
 			new CrawlerConfiguration()
-				.Crawl(url)
+				//.Crawl("http://www.cdon.com")
+				.Crawl("https://www.vergic.com")
+				.Robots()
+				//.Crawl("http://nelly.com/")
+				//.Crawl("http://qliro.se/")
+				//.MaxCrawlCount(10)
+				.DownloadStep(80)
+				.LogDownloadTime()
+				.HtmlProcessor()
+				//.TextProcessor()
+				.ExtractEmail()
+				.LogExceptions()
+				.Do((crawler, propertyBag) =>
+				{
+					string[] emails = propertyBag["Email"].Value as string[];
+					if (emails != null)
+					{
+						foreach (string email in emails)
+						{
+							System.Console.Out.WriteLine(email);
+						}
+					}
+				})
 				.Run();
 		}
 

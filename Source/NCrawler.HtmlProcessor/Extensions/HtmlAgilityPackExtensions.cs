@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,21 @@ namespace NCrawler.HtmlProcessor.Extensions
 {
 	public static class HtmlToText
 	{
+		static HtmlToText()
+		{
+			if (!HtmlEntity.EntityValue.ContainsKey("Rarr"))
+			{
+				HtmlEntity.EntityValue.Add("Rarr", 2192);
+				HtmlEntity.EntityName.Add(2192, "Rarr");
+			}
+
+			if (!HtmlEntity.EntityValue.ContainsKey("Larr"))
+			{
+				HtmlEntity.EntityValue.Add("Larr", 2190);
+				HtmlEntity.EntityName.Add(2190, "Larr");
+			}
+		}
+
 		#region Class Methods
 
 		public static string ExtractText(this HtmlDocument htmlDocument)
@@ -39,7 +55,6 @@ namespace NCrawler.HtmlProcessor.Extensions
 
 		private static void ConvertTo(HtmlNode node, TextWriter outText)
 		{
-			string html;
 			switch (node.NodeType)
 			{
 				case HtmlNodeType.Comment:
@@ -54,19 +69,37 @@ namespace NCrawler.HtmlProcessor.Extensions
 					// script and style must not be output
 					string parentName = node.ParentNode.Name;
 					if ((parentName == "script") || (parentName == "style"))
+					{
 						break;
+					}
 
 					// get text
-					html = ((HtmlTextNode) node).Text;
+					string html = ((HtmlTextNode)node).Text;
 
 					// is it in fact a special closing node output as text?
 					if (HtmlNode.IsOverlappedClosingElement(html))
+					{
 						break;
+					}
 
 					// check the text is meaningful and not a bunch of whitespaces
-					if (html.Trim().Length > 0)
+					var trimmedHtml = html
+						.Trim('\n')
+						.Trim('\r')
+						.Trim();
+					if (trimmedHtml.Length > 0)
 					{
-						outText.Write(HtmlEntity.DeEntitize(html));
+						string deEntitized;
+						try
+						{
+							deEntitized = HtmlEntity.DeEntitize(trimmedHtml.ToLowerInvariant());
+						}
+						catch (Exception)
+						{
+							deEntitized = "?";
+						}
+
+						outText.Write(deEntitized);
 						outText.Write(" ");
 					}
 					break;
@@ -84,6 +117,7 @@ namespace NCrawler.HtmlProcessor.Extensions
 					{
 						ConvertContentTo(node, outText);
 					}
+
 					break;
 			}
 		}
@@ -102,7 +136,7 @@ namespace NCrawler.HtmlProcessor.Extensions
 		#region Constructors
 
 		/// <summary>
-		/// Creates an instance of a DocumentWithLinkedFiles.
+		///     Creates an instance of a DocumentWithLinkedFiles.
 		/// </summary>
 		/// <param name="doc">The input HTML document. May not be null.</param>
 		public DocumentWithLinks(HtmlDocument doc)
@@ -113,61 +147,6 @@ namespace NCrawler.HtmlProcessor.Extensions
 			_doc = doc;
 			GetLinks();
 			GetReferences();
-		}
-
-		#endregion
-
-		#region Instance Properties
-
-		/// <summary>
-		/// Gets a list of links as they are declared in the HTML document.
-		/// </summary>
-		public IEnumerable<string> Links { get; private set; }
-
-		/// <summary>
-		/// Gets a list of reference links to other HTML documents, as they are declared in the HTML document.
-		/// </summary>
-		public IEnumerable<string> References { get; private set; }
-
-		#endregion
-
-		#region Instance Methods
-
-		private void GetLinks()
-		{
-			HtmlNodeCollection atts = _doc.DocumentNode.SelectNodes("//*[@background or @lowsrc or @src or @href or @action]");
-			if (atts.IsNull())
-			{
-				Links = new string[0];
-				return;
-			}
-
-			Links = atts.
-				SelectMany(n => new[]
-					{
-						ParseLink(n, "background"),
-						ParseLink(n, "href"),
-						ParseLink(n, "src"),
-						ParseLink(n, "lowsrc"),
-						ParseLink(n, "action"),
-					}).
-				Distinct().
-				ToArray();
-		}
-
-		private void GetReferences()
-		{
-			HtmlNodeCollection hrefs = _doc.DocumentNode.SelectNodes("//a[@href]");
-			if (hrefs.IsNull())
-			{
-				References = new string[0];
-				return;
-			}
-
-			References = hrefs.
-				Select(href => href.Attributes["href"].Value).
-				Distinct().
-				ToArray();
 		}
 
 		#endregion
@@ -189,6 +168,61 @@ namespace NCrawler.HtmlProcessor.Extensions
 			}
 
 			return att.Value;
+		}
+
+		#endregion
+
+		#region Instance Properties
+
+		/// <summary>
+		///     Gets a list of links as they are declared in the HTML document.
+		/// </summary>
+		public IEnumerable<string> Links { get; private set; }
+
+		/// <summary>
+		///     Gets a list of reference links to other HTML documents, as they are declared in the HTML document.
+		/// </summary>
+		public IEnumerable<string> References { get; private set; }
+
+		#endregion
+
+		#region Instance Methods
+
+		private void GetLinks()
+		{
+			HtmlNodeCollection atts = _doc.DocumentNode.SelectNodes("//*[@background or @lowsrc or @src or @href or @action]");
+			if (atts.IsNull())
+			{
+				Links = new string[0];
+				return;
+			}
+
+			Links = atts.
+				SelectMany(n => new[]
+				{
+					ParseLink(n, "background"),
+					ParseLink(n, "href"),
+					ParseLink(n, "src"),
+					ParseLink(n, "lowsrc"),
+					ParseLink(n, "action")
+				}).
+				Distinct().
+				ToArray();
+		}
+
+		private void GetReferences()
+		{
+			HtmlNodeCollection hrefs = _doc.DocumentNode.SelectNodes("//a[@href]");
+			if (hrefs.IsNull())
+			{
+				References = new string[0];
+				return;
+			}
+
+			References = hrefs.
+				Select(href => href.Attributes["href"].Value).
+				Distinct().
+				ToArray();
 		}
 
 		#endregion

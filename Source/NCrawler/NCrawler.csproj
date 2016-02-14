@@ -105,8 +105,11 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="Extensions\UrlExtensions.cs" />
+    <Compile Include="Interfaces\ICrawler.cs" />
     <Compile Include="Pipeline\DownloadPipelineStep.cs" />
+    <Compile Include="Pipeline\EMailEntityExtractionProcessor.cs" />
     <Compile Include="Pipeline\LambdaFilterPipelineStep.cs" />
+    <Compile Include="Pipeline\LinkExtractionPipelineStep.cs" />
     <Compile Include="Properties\SharedAssemblyInfo.cs" />
     <Compile Include="PropertyBag.cs" />
     <Compile Include="Services\RobotService.cs" />

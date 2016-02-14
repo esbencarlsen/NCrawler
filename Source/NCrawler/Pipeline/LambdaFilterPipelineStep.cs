@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using NCrawler.Interfaces;
 
@@ -6,19 +7,36 @@ namespace NCrawler.Pipeline
 {
 	public class LambdaFilterPipelineStep : IPipelineStep
 	{
-		private readonly Predicate<PropertyBag> _predicate;
+		private readonly Func<ICrawler, PropertyBag, bool> _predicate;
+		private readonly Func<ICrawler, PropertyBag, Task<bool>> _predicate2;
 
-		public LambdaFilterPipelineStep(Predicate<PropertyBag> predicate, bool runInParallel = false)
+		public LambdaFilterPipelineStep(Func<ICrawler, PropertyBag, bool> predicate, int maxDegreeOfParallelism = 1)
 		{
 			_predicate = predicate;
-			ProcessInParallel = runInParallel;
+			MaxDegreeOfParallelism = maxDegreeOfParallelism;
 		}
 
-		public bool Process(PropertyBag propertyBag)
+		public LambdaFilterPipelineStep(Func<ICrawler, PropertyBag, Task<bool>> predicate, int maxDegreeOfParallelism = 1)
 		{
-			return _predicate(propertyBag);
+			_predicate2 = predicate;
+			MaxDegreeOfParallelism = maxDegreeOfParallelism;
 		}
 
-		public bool ProcessInParallel { get; }
+		public Task<bool> Process(ICrawler crawler, PropertyBag propertyBag)
+		{
+			if (_predicate != null)
+			{
+				return Task.FromResult(_predicate(crawler, propertyBag));
+			}
+
+			if (_predicate2 != null)
+			{
+				return _predicate2(crawler, propertyBag);
+			}
+
+			return Task.FromResult(true);
+		}
+
+		public int MaxDegreeOfParallelism { get; }
 	}
 }

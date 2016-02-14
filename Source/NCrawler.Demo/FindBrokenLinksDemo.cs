@@ -24,7 +24,7 @@ namespace NCrawler.Demo
 			// of 2 with 2 pipeline steps
 			NCrawlerModule.Setup();
 			using (Crawler c = new Crawler(new Uri("http://ncrawler.codeplex.com"),
-				new HtmlDocumentProcessor(), // Process html
+				new HtmlDocumentProcessorPipelineStep(), // Process html
 				new DumpBrokenLinksStep()) // Custom pipeline Step
 				{
 					MaximumThreadCount = 5,

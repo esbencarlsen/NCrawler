@@ -53,7 +53,7 @@ namespace NCrawler.HtmlProcessor.Extensions
 		/// </returns>
 		public static string HtmlEntityDecode(string encodedText)
 		{
-			return s_entityResolver.Value.Replace(encodedText, new MatchEvaluator(ResolveEntityAngleAmp));
+			return s_entityResolver.Value.Replace(encodedText, ResolveEntityAngleAmp);
 		}
 
 		/// <summary>
@@ -68,8 +68,8 @@ namespace NCrawler.HtmlProcessor.Extensions
 		public static string HtmlEntityDecode(string encodedText, bool encodeTagsToo)
 		{
 			return encodeTagsToo
-				? s_entityResolver.Value.Replace(encodedText, new MatchEvaluator(ResolveEntityAngleAmp))
-				: s_entityResolver.Value.Replace(encodedText, new MatchEvaluator(ResolveEntityNotAngleAmp));
+				? s_entityResolver.Value.Replace(encodedText, ResolveEntityAngleAmp)
+				: s_entityResolver.Value.Replace(encodedText, ResolveEntityNotAngleAmp);
 		}
 
 		/// <summary>

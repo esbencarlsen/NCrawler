@@ -27,7 +27,7 @@ namespace NGet
 				s_arguments.StartupArgumentOptionSet.Parse(args);
 
 				using (Crawler crawler = new Crawler(new Uri("http://ncrawler.codeplex.com"),
-					new HtmlDocumentProcessor(),
+					new HtmlDocumentProcessorPipelineStep(),
 					new ConsolePipelineStep()))
 				{
 					crawler.MaximumThreadCount = 10;

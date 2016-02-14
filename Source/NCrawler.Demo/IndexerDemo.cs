@@ -31,7 +31,7 @@ namespace NCrawler.Demo
 			// 	* Step 1 - The Html Processor, parses and extracts links, text and more from html
 			//  * Step 2 - Custom step, that is supposed to send content to an Index or Database
 			using (Crawler c = new Crawler(new Uri("http://ncrawler.codeplex.com"),
-				new HtmlDocumentProcessor( // Process html, filter links and content
+				new HtmlDocumentProcessorPipelineStep( // Process html, filter links and content
 				// Setup filter that removed all the text between <body and </body>
 				// This can be custom tags like <!--BeginTextFiler--> and <!--EndTextFiler-->
 				// or whatever you prefer. This way you can control what text is extracted on every page

@@ -4,79 +4,67 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 
 using HtmlAgilityPack;
 
 using NCrawler.Extensions;
 using NCrawler.HtmlProcessor.Extensions;
-using NCrawler.HtmlProcessor.Properties;
 using NCrawler.Interfaces;
 using NCrawler.Utils;
 
 namespace NCrawler.HtmlProcessor
 {
-	public class HtmlDocumentProcessor : ContentCrawlerRules, IPipelineStep
+	public class HtmlDocumentProcessorPipelineStep : ContentCrawlerRules, IPipelineStep
 	{
-		#region Constructors
-
-		public HtmlDocumentProcessor()
-			: this(null, null)
+		public HtmlDocumentProcessorPipelineStep(int maxDegreeOfParallelism) : this(maxDegreeOfParallelism, null, null)
 		{
 		}
 
-		public HtmlDocumentProcessor(Dictionary<string, string> filterTextRules,
+		public HtmlDocumentProcessorPipelineStep(
+			int maxDegreeOfParallelism,
+			Dictionary<string, string> filterTextRules,
 			Dictionary<string, string> filterLinksRules)
 			: base(filterTextRules, filterLinksRules)
 		{
+			MaxDegreeOfParallelism = maxDegreeOfParallelism;
 		}
 
-		#endregion
-
-		#region Instance Methods
-
-		protected virtual string NormalizeLink(string baseUrl, string link)
+		public Task<bool> Process(ICrawler crawler, PropertyBag propertyBag)
 		{
-			return link.NormalizeUrl(baseUrl);
-		}
-
-		#endregion
-
-		#region IPipelineStep Members
-
-		public virtual void Process(Crawler crawler, PropertyBag propertyBag)
-		{
-			//AspectF.Define
-			//	.NotNull(crawler, "crawler")
-			//	.NotNull(propertyBag, "propertyBag");
+			AspectF.Define
+				.NotNull(crawler, nameof(crawler))
+				.NotNull(propertyBag, nameof(propertyBag));
 
 			if (propertyBag.StatusCode != HttpStatusCode.OK)
 			{
-				return;
+				return Task.FromResult(true);
 			}
 
 			if (!IsHtmlContent(propertyBag.ContentType))
 			{
-				return;
+				return Task.FromResult(true);
 			}
 
 			HtmlDocument htmlDoc = new HtmlDocument
-				{
-					OptionAddDebuggingAttributes = false,
-					OptionAutoCloseOnEnd = true,
-					OptionFixNestedTags = true,
-					OptionReadEncoding = true
-				};
-			using (Stream reader = propertyBag.GetResponse())
 			{
-				Encoding documentEncoding = htmlDoc.DetectEncoding(reader);
-				reader.Seek(0, SeekOrigin.Begin);
+				OptionAddDebuggingAttributes = false,
+				OptionAutoCloseOnEnd = true,
+				OptionFixNestedTags = true,
+				OptionReadEncoding = true
+			};
+
+			using (MemoryStream ms = new MemoryStream(propertyBag.Response))
+			{
+				Encoding documentEncoding = htmlDoc.DetectEncoding(ms);
+				ms.Seek(0, SeekOrigin.Begin);
 				if (!documentEncoding.IsNull())
 				{
-					htmlDoc.Load(reader, documentEncoding, true);
+					htmlDoc.Load(ms, documentEncoding, true);
 				}
 				else
 				{
-					htmlDoc.Load(reader, true);
+					htmlDoc.Load(ms, true);
 				}
 			}
 
@@ -111,7 +99,7 @@ namespace NCrawler.HtmlProcessor
 					let name = entry.Attributes["name"]
 					let content = entry.Attributes["content"]
 					where !name.IsNull() && !name.Value.IsNullOrEmpty() && !content.IsNull() && !content.Value.IsNullOrEmpty()
-					select name.Value + ": " + content.Value).ToArray();
+					select $"{name.Value}: {content.Value}").ToArray();
 			}
 
 			// Extract text
@@ -131,14 +119,21 @@ namespace NCrawler.HtmlProcessor
 			nodes = htmlDoc.DocumentNode.SelectNodes("//head/base[@href]");
 			if (!nodes.IsNull())
 			{
-				baseUrl =
-					nodes.
-					Select(entry => new {entry, href = entry.Attributes["href"]}).
-						Where(@t => !@t.href.IsNull() && !@t.href.Value.IsNullOrEmpty() &&
-							Uri.IsWellFormedUriString(@t.href.Value, UriKind.RelativeOrAbsolute)).
-					Select(@t => @t.href.Value).
-					AddToEnd(baseUrl).
-					FirstOrDefault();
+				baseUrl = nodes
+					.Select(entry => new {entry, href = entry.Attributes["href"]})
+					.Where(@t => !@t.href.IsNull() && !@t.href.Value.IsNullOrEmpty()
+						&& Uri.IsWellFormedUriString(@t.href.Value, UriKind.RelativeOrAbsolute))
+					.Select(@t =>
+					{
+						if (Uri.IsWellFormedUriString(@t.href.Value, UriKind.Relative))
+						{
+							return propertyBag.ResponseUri.GetComponents(UriComponents.SchemeAndServer, UriFormat.Unescaped) + @t.href.Value;
+						}
+
+						return @t.href.Value;
+					})
+					.AddToEnd(baseUrl)
+					.FirstOrDefault();
 			}
 
 			// Extract Links
@@ -157,24 +152,22 @@ namespace NCrawler.HtmlProcessor
 					continue;
 				}
 
-				crawler.AddStep(new Uri(normalizedLink), propertyBag.Step.Depth + 1,
-					propertyBag.Step, new Dictionary<string, object>
-						{
-							{Resources.PropertyBagKeyOriginalUrl, link},
-							{Resources.PropertyBagKeyOriginalReferrerUrl, propertyBag.ResponseUri}
-						});
+				crawler.Crawl(new Uri(normalizedLink), propertyBag);
 			}
+
+			return Task.FromResult(true);
 		}
 
-		#endregion
+		public int MaxDegreeOfParallelism { get; }
 
-		#region Class Methods
+		protected virtual string NormalizeLink(string baseUrl, string link)
+		{
+			return link.NormalizeUrl(baseUrl);
+		}
 
 		private static bool IsHtmlContent(string contentType)
 		{
 			return contentType.StartsWith("text/html", StringComparison.OrdinalIgnoreCase);
 		}
-
-		#endregion
 	}
 }

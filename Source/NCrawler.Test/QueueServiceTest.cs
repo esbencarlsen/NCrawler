@@ -130,8 +130,8 @@ namespace NCrawler.Test
 		private static CollectorStep CollectionCrawl()
 		{
 			CollectorStep collectorStep = new CollectorStep();
-			HtmlDocumentProcessor htmlDocumentProcessor = new HtmlDocumentProcessor();
-			using (Crawler crawler = new Crawler(new Uri("http://ncrawler.codeplex.com"), collectorStep, htmlDocumentProcessor))
+			HtmlDocumentProcessorPipelineStep htmlDocumentProcessorPipelineStep = new HtmlDocumentProcessorPipelineStep();
+			using (Crawler crawler = new Crawler(new Uri("http://ncrawler.codeplex.com"), collectorStep, htmlDocumentProcessorPipelineStep))
 			{
 				Console.Out.WriteLine(crawler.GetType());
 				crawler.MaximumThreadCount = 5;

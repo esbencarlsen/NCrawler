@@ -36,7 +36,7 @@ namespace NCrawler.Demo
 
 			using (Crawler c = new Crawler(
 				new Uri("http://ncrawler.codeplex.com"),
-				new HtmlDocumentProcessor(), // Process html
+				new HtmlDocumentProcessorPipelineStep(), // Process html
 				new DumperStep())
 				{
 					MaximumThreadCount = 2,
@@ -88,7 +88,7 @@ namespace NCrawler.Demo
 
 			// Create child crawler to traverse external site with max 2 levels
 			using (Crawler externalCrawler = new Crawler(uri,
-				new HtmlDocumentProcessor(), // Process html
+				new HtmlDocumentProcessorPipelineStep(), // Process html
 				new DumperStep())
 				{
 					MaximumThreadCount = 1,

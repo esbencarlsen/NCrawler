@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Runtime.Serialization;
 
 using NCrawler.Extensions;
-using NCrawler.Interfaces;
 
 namespace NCrawler
 {
 	[DataContract]
-	public class PropertyBag : IEquatable<PropertyBag>, IComparable<PropertyBag>, IComparable
+	public class PropertyBag
 	{
 		#region Fields
 
@@ -97,7 +95,7 @@ namespace NCrawler
 		public CrawlStep Referrer { get; internal set; }
 
 		[DataMember]
-		public Func<Stream> GetResponse { get; set; }
+		public byte[] Response { get; set; }
 
 		[DataMember]
 		public Uri ResponseUri { get; internal set; }
@@ -123,127 +121,11 @@ namespace NCrawler
 		[DataMember]
 		public bool StopPipelining { get; set; }
 
-		#endregion
+		[DataMember]
+		public List<Exception> Exceptions { get; set; } = new List<Exception>();
 
-		#region Instance Methods
-
-		public override bool Equals(object obj)
-		{
-			if (ReferenceEquals(null, obj))
-			{
-				return false;
-			}
-
-			if (ReferenceEquals(this, obj))
-			{
-				return true;
-			}
-
-			if (obj.GetType() != typeof (PropertyBag))
-			{
-				return false;
-			}
-
-			return Equals((PropertyBag) obj);
-		}
-
-		public override int GetHashCode()
-		{
-			unchecked
-			{
-				int result = _objPropertyCollection?.GetHashCode() ?? 0;
-				result = (result*397) ^ (CharacterSet?.GetHashCode() ?? 0);
-				result = (result*397) ^ (ContentEncoding?.GetHashCode() ?? 0);
-				result = (result*397) ^ (ContentType?.GetHashCode() ?? 0);
-				result = (result*397) ^ (Headers?.GetHashCode() ?? 0);
-				result = (result*397) ^ IsMutuallyAuthenticated.GetHashCode();
-				result = (result*397) ^ LastModified.GetHashCode();
-				result = (result*397) ^ (Method?.GetHashCode() ?? 0);
-				result = (result*397) ^ (OriginalReferrerUrl?.GetHashCode() ?? 0);
-				result = (result*397) ^ (OriginalUrl?.GetHashCode() ?? 0);
-				result = (result*397) ^ (ProtocolVersion?.GetHashCode() ?? 0);
-				result = (result*397) ^ (Referrer?.GetHashCode() ?? 0);
-				result = (result*397) ^ (ResponseUri?.GetHashCode() ?? 0);
-				result = (result*397) ^ (Server?.GetHashCode() ?? 0);
-				result = (result*397) ^ StatusCode.GetHashCode();
-				result = (result*397) ^ (StatusDescription?.GetHashCode() ?? 0);
-				result = (result*397) ^ (Step?.GetHashCode() ?? 0);
-				result = (result*397) ^ (Text?.GetHashCode() ?? 0);
-				result = (result*397) ^ (Title?.GetHashCode() ?? 0);
-				result = (result*397) ^ DownloadTime.GetHashCode();
-				return result;
-			}
-		}
-
-		#endregion
-
-		#region Operators
-
-		public static bool operator ==(PropertyBag left, PropertyBag right)
-		{
-			return Equals(left, right);
-		}
-
-		public static bool operator !=(PropertyBag left, PropertyBag right)
-		{
-			return !Equals(left, right);
-		}
-
-		#endregion
-
-		#region IComparable Members
-
-		public int CompareTo(object obj)
-		{
-			return CompareTo(obj as PropertyBag);
-		}
-
-		#endregion
-
-		#region IComparable<PropertyBag> Members
-
-		public int CompareTo(PropertyBag other)
-		{
-			return Step.CompareTo(other.Step);
-		}
-
-		#endregion
-
-		#region IEquatable<PropertyBag> Members
-
-		public bool Equals(PropertyBag other)
-		{
-			if (ReferenceEquals(null, other))
-			{
-				return false;
-			}
-
-			if (ReferenceEquals(this, other))
-			{
-				return true;
-			}
-
-			return Equals(other._objPropertyCollection, _objPropertyCollection) &&
-				Equals(other.CharacterSet, CharacterSet) &&
-				Equals(other.ContentEncoding, ContentEncoding) &&
-				Equals(other.ContentType, ContentType) &&
-				Equals(other.Headers, Headers) &&
-				other.IsMutuallyAuthenticated.Equals(IsMutuallyAuthenticated) &&
-				other.LastModified.Equals(LastModified) &&
-				Equals(other.Method, Method) &&
-				Equals(other.OriginalReferrerUrl, OriginalReferrerUrl) &&
-				Equals(other.OriginalUrl, OriginalUrl) &&
-				Equals(other.ProtocolVersion, ProtocolVersion) &&
-				Equals(other.Referrer, Referrer) &&
-				Equals(other.ResponseUri, ResponseUri) &&
-				Equals(other.Server, Server) &&
-				Equals(other.StatusCode, StatusCode) &&
-				Equals(other.StatusDescription, StatusDescription) &&
-				Equals(other.Step, Step) &&
-				Equals(other.Text, Text) &&
-				Equals(other.Title, Title) &&
-				other.DownloadTime.Equals(DownloadTime);
-		}
+		[DataMember]
+		public string UserAgent { get; set; }
 
 		#endregion
 
@@ -280,7 +162,7 @@ namespace NCrawler
 			/// <summary>
 			/// The name of the Property
 			/// </summary>
-			public string Name { get; }
+			public string Name { get; set; }
 
 			/// <summary>
 			/// A pointer to the ultimate client class of the Property / PropertyBag

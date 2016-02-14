@@ -81,12 +81,11 @@
     <Compile Include="..\NCrawler\Properties\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="EMailEntityExtractionProcessor.cs" />
+    <Compile Include="CrawlerConfigurationExtensions.cs" />
     <Compile Include="Extensions\ExtendedHtmlUtility.cs" />
     <Compile Include="Extensions\HtmlAgilityPackExtensions.cs" />
-    <Compile Include="HtmlDocumentProcessor.cs" />
+    <Compile Include="HtmlDocumentProcessorPipelineStep.cs" />
     <Compile Include="Interfaces\ISubstitution.cs" />
-    <Compile Include="LinkExtractionProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -94,7 +93,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RegexSubstitution.cs" />
-    <Compile Include="TextDocumentProcessor.cs" />
+    <Compile Include="TextDocumentProcessorPipelineStep.cs" />
     <Compile Include="ContentCrawlerRules.cs" />
   </ItemGroup>
   <ItemGroup>

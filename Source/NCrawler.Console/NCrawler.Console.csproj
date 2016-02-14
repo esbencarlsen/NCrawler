@@ -88,6 +88,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NCrawler.HtmlProcessor\NCrawler.HtmlProcessor.csproj">
+      <Project>{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}</Project>
+      <Name>NCrawler.HtmlProcessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler.Robots\NCrawler.Robots.csproj">
+      <Project>{EF2FC937-6A66-4014-BF52-8D4621F5997B}</Project>
+      <Name>NCrawler.Robots</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NCrawler\NCrawler.csproj">
       <Project>{5E4DF149-F650-4152-8410-586FB9CCF644}</Project>
       <Name>NCrawler</Name>

@@ -20,7 +20,7 @@ namespace NCrawler.Extensions
 				return baseUrl;
 			}
 
-			if (url.IndexOf("..") != -1 ||
+			if (url.IndexOf("..", StringComparison.Ordinal) != -1 ||
 				url.StartsWith("/") ||
 				!url.StartsWith(s_httpScheme, StringComparison.OrdinalIgnoreCase) ||
 				!url.StartsWith(s_httpsScheme, StringComparison.OrdinalIgnoreCase))

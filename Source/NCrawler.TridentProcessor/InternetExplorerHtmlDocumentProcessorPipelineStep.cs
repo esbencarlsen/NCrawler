@@ -12,7 +12,7 @@ using NCrawler.Utils;
 
 namespace NCrawler.IEProcessor
 {
-	public class InternetExplorerHtmlDocumentProcessor : HtmlDocumentProcessor, IPipelineStepWithTimeout
+	public class InternetExplorerHtmlDocumentProcessorPipelineStep : HtmlDocumentProcessorPipelineStep, IPipelineStepWithTimeout
 	{
 		#region IPipelineStepWithTimeout Members
 
