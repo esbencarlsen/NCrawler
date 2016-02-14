@@ -17,9 +17,10 @@ namespace NCrawler
 {
 	public class CrawlerConfiguration
 	{
-		public ILogger Logger { get; set; }
 		internal readonly List<IPipelineStep> Pipeline = new List<IPipelineStep>();
 		internal readonly List<Uri> StartUris = new List<Uri>();
+
+		private string _userAgent = "Mozilla";
 
 		public CrawlerConfiguration()
 		{
@@ -28,6 +29,8 @@ namespace NCrawler
 
 			Logger = new LoggerConfiguration().MinimumLevel.Verbose().WriteTo.ColoredConsole().CreateLogger();
 		}
+
+		public ILogger Logger { get; set; }
 
 		/// <summary>
 		///     Maximum amount of time allowed to make a connection
@@ -103,7 +106,7 @@ namespace NCrawler
 
 		public void AddLoggerStep()
 		{
-			LambdaFilter((crawler, propertyBag) =>
+			Where((crawler, propertyBag) =>
 			{
 				Logger.Verbose("Uri {uri}", propertyBag.Step.Uri);
 				return true;
@@ -118,32 +121,34 @@ namespace NCrawler
 		public CrawlerConfiguration RemoveDuplicates(UriComponents uriSensitivity = UriComponents.AbsoluteUri)
 		{
 			HashSet<string> linksAlreadyCrawled = new HashSet<string>();
-			return LambdaFilter((crawler, propertyBag) =>
+			return Where((crawler, propertyBag) =>
 				!linksAlreadyCrawled.Add(propertyBag.Step.Uri.GetComponents(uriSensitivity, UriFormat.Unescaped)));
 		}
 
 		public CrawlerConfiguration MaxCrawlDepth(int maxCrawlDepth)
 		{
-			return LambdaFilter((crawler, propertyBag) => propertyBag.Step.Depth < maxCrawlDepth);
+			return Where((crawler, propertyBag) => propertyBag.Step.Depth < maxCrawlDepth);
 		}
 
 		public CrawlerConfiguration MaxCrawlCount(int maxCrawlCount)
 		{
 			int downloadCounter = 0;
-			return LambdaFilter((crawler, propertyBag) => downloadCounter++ < maxCrawlCount);
+			return Where((crawler, propertyBag) => downloadCounter++ < maxCrawlCount);
 		}
 
 		public CrawlerConfiguration LogDownloadTime()
 		{
-			return Do((crawler, propertyBag) =>
-			 {
-				 Logger.Verbose("{0} downloaded in {1}", propertyBag.Step.Uri, propertyBag.DownloadTime);
-			 });
+			return
+				Do(
+					(crawler, propertyBag) =>
+					{
+						Logger.Verbose("{0} downloaded in {1}", propertyBag.Step.Uri, propertyBag.DownloadTime);
+					});
 		}
 
 		public CrawlerConfiguration MaximumUrlLength(int maxUrlLength)
 		{
-			return LambdaFilter((crawler, propertyBag) => propertyBag.Step.Uri.ToString().Length < maxUrlLength);
+			return Where((crawler, propertyBag) => propertyBag.Step.Uri.ToString().Length < maxUrlLength);
 		}
 
 		public CrawlerConfiguration Do(Action<ICrawler, PropertyBag> predicate, int maxDegreeOfParallelism = 1)
@@ -155,12 +160,12 @@ namespace NCrawler
 			}, maxDegreeOfParallelism));
 		}
 
-		public CrawlerConfiguration LambdaFilter(Func<ICrawler, PropertyBag, bool> predicate, int maxDegreeOfParallelism = 1)
+		public CrawlerConfiguration Where(Func<ICrawler, PropertyBag, bool> predicate, int maxDegreeOfParallelism = 1)
 		{
 			return AddPipelineStep(new LambdaFilterPipelineStep(predicate, maxDegreeOfParallelism));
 		}
 
-		public CrawlerConfiguration LambdaFilter(Func<ICrawler, PropertyBag, Task<bool>> predicate,
+		public CrawlerConfiguration Where(Func<ICrawler, PropertyBag, Task<bool>> predicate,
 			int maxDegreeOfParallelism = 1)
 		{
 			return AddPipelineStep(new LambdaFilterPipelineStep(predicate, maxDegreeOfParallelism));
@@ -168,7 +173,7 @@ namespace NCrawler
 
 		public CrawlerConfiguration RegexFilter(Regex regex)
 		{
-			return LambdaFilter((crawler, propertyBag) => regex.Match(propertyBag.Step.Uri.ToString()).Success);
+			return Where((crawler, propertyBag) => regex.Match(propertyBag.Step.Uri.ToString()).Success);
 		}
 
 		public CrawlerConfiguration ExtractEmail(int? maxDegreeOfParallelism = null)
@@ -177,7 +182,6 @@ namespace NCrawler
 				new EMailEntityExtractionProcessor(maxDegreeOfParallelism.GetValueOrDefault(Environment.ProcessorCount)));
 		}
 
-		private string _userAgent = "Mozilla";
 		public CrawlerConfiguration UserAgent(string userAgent)
 		{
 			_userAgent = userAgent;
@@ -212,6 +216,14 @@ namespace NCrawler
 			{
 				logger.Error(exception, "Error while crawling: {0}", propertyBag?.Step?.Uri);
 			}
+		}
+
+		public CrawlerConfiguration WhereHostInSeed()
+		{
+			string[] hostSeeds = StartUris
+				.Select(uri => uri.Host)
+				.ToArray();
+			return Where((crawler, bag) => { return hostSeeds.Any(host => host == bag.Step.Uri.Host); });
 		}
 
 		public CrawlerConfiguration Crawl(string url)

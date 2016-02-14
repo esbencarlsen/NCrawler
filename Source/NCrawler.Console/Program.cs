@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
 
 using NConsoler;
 
@@ -54,17 +56,19 @@ namespace NCrawler.Console
 			//}
 
 			new CrawlerConfiguration()
-				//.Crawl("http://www.cdon.com")
-				.Crawl("https://www.vergic.com")
+				.Crawl("http://cdon.se/")
+				//.Crawl("https://www.vergic.com")
+				//.Where((crawler, bag) => bag.Step.Uri.Host.Contains("vergic.com"))
+				.WhereHostInSeed()
 				.Robots()
 				//.Crawl("http://nelly.com/")
 				//.Crawl("http://qliro.se/")
 				//.MaxCrawlCount(10)
-				.DownloadStep(80)
+				.DownloadStep(10)
 				.LogDownloadTime()
 				.HtmlProcessor()
 				//.TextProcessor()
-				.ExtractEmail()
+				//.ExtractEmail()
 				.LogExceptions()
 				.Do((crawler, propertyBag) =>
 				{

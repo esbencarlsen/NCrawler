@@ -18,8 +18,6 @@ namespace NCrawler.Robots
 		private readonly IDictionary<string, RobotsTxt.Robots> _robotsInfo =
 			new Dictionary<string, RobotsTxt.Robots>();
 
-		private long par;
-
 		public RobotsPipelineStep(ILogger logger)
 		{
 			_logger = logger;
@@ -55,6 +53,12 @@ namespace NCrawler.Robots
 			if (!robots.HasRules)
 			{
 				return true;
+			}
+
+			long crawlDelay = robots.CrawlDelay(propertyBag.UserAgent);
+			if (crawlDelay > 0)
+			{
+				await Task.Delay((int) crawlDelay);
 			}
 
 			bool result = robots.IsPathAllowed(propertyBag.UserAgent, propertyBag.Step.Uri.ToString());
