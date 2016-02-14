@@ -1,13 +1,8 @@
-﻿using System;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-
-using NConsoler;
+﻿using NConsoler;
 
 using NCrawler.Console.Extensions;
 using NCrawler.HtmlProcessor;
-using NCrawler.Robots;
+using NCrawler.Toxy;
 using NCrawler.Utils;
 
 namespace NCrawler.Console
@@ -15,8 +10,6 @@ namespace NCrawler.Console
 	internal class Program
 	{
 		#region Class Methods
-
-		static bool s_showDownloadTimes;
 
 		[Action]
 		public static void Crawl([Required] string url,
@@ -40,7 +33,6 @@ namespace NCrawler.Console
 				GreaterOrEqual("maximumCrawlTime", maximumCrawlTime, 0).
 				Between("connectiontimeout", connTimeout, 0, 999);
 
-			s_showDownloadTimes = showDownloadTimes;
 			//using (Crawler crawler = new Crawler(new Uri(url), new HtmlDocumentProcessor()))
 			//{
 			//	crawler.UserAgent = userAgent;
@@ -56,30 +48,25 @@ namespace NCrawler.Console
 			//}
 
 			new CrawlerConfiguration()
-				.CrawlSeed("http://cdon.se/")
+				//.CrawlSeed("http://cdon.se/")
+				.CrawlSeed("http://www.orimi.com/pdf-test.pdf")
 				//.Crawl("https://www.vergic.com")
 				//.Where((crawler, bag) => bag.Step.Uri.Host.Contains("vergic.com"))
-				.WhereHostInCrawlSeed()
-				.Robots()
+				//.WhereHostInCrawlSeed()
+				//.Robots()
 				//.Crawl("http://nelly.com/")
 				//.Crawl("http://qliro.se/")
 				//.MaxCrawlCount(10)
 				.DownloadStep(10)
 				.LogDownloadTime()
 				.HtmlProcessor()
+				.TextExtractProcessor()
 				//.TextProcessor()
 				//.ExtractEmail()
 				.LogExceptions()
 				.Do((crawler, propertyBag) =>
 				{
-					string[] emails = propertyBag["Email"].Value as string[];
-					if (emails != null)
-					{
-						foreach (string email in emails)
-						{
-							System.Console.Out.WriteLine(email);
-						}
-					}
+					System.Console.Out.WriteLine(propertyBag.Text);
 				})
 				.Run();
 		}
