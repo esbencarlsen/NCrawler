@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using NCrawler.Extensions;
-using NCrawler.Interfaces;
 using NCrawler.Utils;
 
 namespace NCrawler.Pipeline

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace NCrawler.Interfaces
+namespace NCrawler
 {
 	public interface IPipelineStep
 	{

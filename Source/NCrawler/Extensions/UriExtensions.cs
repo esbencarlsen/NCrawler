@@ -16,7 +16,7 @@ namespace NCrawler.Extensions
 			// Get sensitive part
 			string sensitiveUrlPart = uri.GetComponents(uriSensitivity, UriFormat.Unescaped);
 
-			if (sensitiveUrlPart.IsNullOrEmpty())
+			if (string.IsNullOrEmpty(sensitiveUrlPart))
 			{
 				return completeUrl;
 			}

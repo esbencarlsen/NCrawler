@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using NCrawler.Interfaces;
-
 namespace NCrawler.Pipeline
 {
 	public class LambdaFilterPipelineStep : IPipelineStep

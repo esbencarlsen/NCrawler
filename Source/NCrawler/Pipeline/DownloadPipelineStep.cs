@@ -4,8 +4,6 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 
-using NCrawler.Interfaces;
-
 namespace NCrawler.Pipeline
 {
 	public class DownloadPipelineStep : IPipelineStep

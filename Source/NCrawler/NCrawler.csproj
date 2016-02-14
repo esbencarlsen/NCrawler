@@ -96,32 +96,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrawlerConfiguration.cs" />
-    <Compile Include="CrawlerV2.cs" />
+    <Compile Include="CrawlerConfiguration.Run.Cs" />
     <Compile Include="CrawlStep.cs" />
-    <Compile Include="Extensions\EventHandlerExtensions.cs" />
-    <Compile Include="Extensions\IAsyncResultExtensions.cs" />
     <Compile Include="Extensions\AspectExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="Extensions\UrlExtensions.cs" />
-    <Compile Include="Interfaces\ICrawler.cs" />
+    <Compile Include="ICrawler.cs" />
+    <Compile Include="IPipelineStep.cs" />
     <Compile Include="Pipeline\DownloadPipelineStep.cs" />
     <Compile Include="Pipeline\EMailEntityExtractionProcessor.cs" />
     <Compile Include="Pipeline\LambdaFilterPipelineStep.cs" />
     <Compile Include="Pipeline\LinkExtractionPipelineStep.cs" />
     <Compile Include="Properties\SharedAssemblyInfo.cs" />
     <Compile Include="PropertyBag.cs" />
-    <Compile Include="Services\RobotService.cs" />
     <Compile Include="Utils\AspectF.cs" />
     <Compile Include="Utils\DisposableBase.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
-    <Compile Include="Extensions\StreamExtensions.cs" />
-    <Compile Include="Interfaces\IPipelineStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\FileSystemHelpers.cs" />
-    <Compile Include="Utils\MemoryStreamWithFileBackingStore.cs" />
-    <Compile Include="Utils\TempFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

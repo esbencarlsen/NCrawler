@@ -64,7 +64,7 @@ namespace NCrawler
 
 		public override string ToString()
 		{
-			return "Depth: {0}, Uri: {1}".FormatWith(Depth, Uri);
+			return $"Depth: {Depth}, Uri: {Uri}";
 		}
 
 		#endregion

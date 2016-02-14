@@ -144,7 +144,7 @@ namespace NCrawler.HtmlProcessor
 			{
 				string key = Regex.Escape(k.Key);
 				string value = Regex.Escape(k.Value);
-				string pattern = "({0})(.*?)({1})".FormatWith(key, value);
+				string pattern = $"({key})(.*?)({value})";
 				const RegexOptions options = RegexOptions.IgnoreCase |
 					RegexOptions.Singleline | RegexOptions.CultureInvariant | RegexOptions.Compiled;
 				content = Regex.Replace(content, pattern, string.Empty, options);

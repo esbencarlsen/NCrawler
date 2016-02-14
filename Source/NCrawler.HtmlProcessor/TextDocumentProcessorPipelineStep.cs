@@ -3,8 +3,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-using NCrawler.Interfaces;
-
 namespace NCrawler.HtmlProcessor
 {
 	public class TextDocumentProcessorPipelineStep : IPipelineStep

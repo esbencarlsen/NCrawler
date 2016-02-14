@@ -10,7 +10,6 @@ using HtmlAgilityPack;
 
 using NCrawler.Extensions;
 using NCrawler.HtmlProcessor.Extensions;
-using NCrawler.Interfaces;
 using NCrawler.Utils;
 
 namespace NCrawler.HtmlProcessor

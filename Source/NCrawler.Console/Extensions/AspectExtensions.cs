@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 
-using NCrawler.Extensions;
 using NCrawler.Utils;
 
 namespace NCrawler.Console.Extensions
@@ -15,17 +14,17 @@ namespace NCrawler.Console.Extensions
 		{
 			if (fromValue > toValue)
 			{
-				throw new ArgumentOutOfRangeException("fromValue", @"From value cannot be less than to value");
+				throw new ArgumentOutOfRangeException(nameof(fromValue), @"From value cannot be less than to value");
 			}
 
 			if (actualValue < fromValue)
 			{
-				throw new Exception(@"{0}({1}) must be greather or equal to {2}".FormatWith(parameterName, actualValue, fromValue));
+				throw new Exception($"{parameterName}({actualValue}) must be greather or equal to {fromValue}");
 			}
 
 			if (actualValue > toValue)
 			{
-				throw new Exception(@"{0}({1}) must be less or equal to {2}".FormatWith(parameterName, actualValue, toValue));
+				throw new Exception($"{parameterName}({actualValue}) must be less or equal to {toValue}");
 			}
 
 			return aspect;
@@ -36,7 +35,7 @@ namespace NCrawler.Console.Extensions
 		{
 			if (actualValue < fromValue)
 			{
-				throw new Exception(@"{0}({1}) must be greather or equal to {2}".FormatWith(parameterName, actualValue, fromValue));
+				throw new Exception(@"{parameterName}({actualValue}) must be greather or equal to {fromValue}");
 			}
 
 			return aspect;

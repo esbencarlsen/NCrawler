@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NCrawler.Interfaces
+namespace NCrawler
 {
 	public interface ICrawler
 	{

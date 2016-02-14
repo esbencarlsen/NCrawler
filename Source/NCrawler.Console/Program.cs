@@ -56,10 +56,10 @@ namespace NCrawler.Console
 			//}
 
 			new CrawlerConfiguration()
-				.Crawl("http://cdon.se/")
+				.CrawlSeed("http://cdon.se/")
 				//.Crawl("https://www.vergic.com")
 				//.Where((crawler, bag) => bag.Step.Uri.Host.Contains("vergic.com"))
-				.WhereHostInSeed()
+				.WhereHostInCrawlSeed()
 				.Robots()
 				//.Crawl("http://nelly.com/")
 				//.Crawl("http://qliro.se/")

@@ -33,15 +33,15 @@ namespace NConsoler
 
 			if (targetType == null)
 			{
-				throw new ArgumentNullException("targetType");
+				throw new ArgumentNullException(nameof(targetType));
 			}
 			if (args == null)
 			{
-				throw new ArgumentNullException("args");
+				throw new ArgumentNullException(nameof(args));
 			}
 			if (messenger == null)
 			{
-				throw new ArgumentNullException("messenger");
+				throw new ArgumentNullException(nameof(messenger));
 			}
 
 			#endregion
