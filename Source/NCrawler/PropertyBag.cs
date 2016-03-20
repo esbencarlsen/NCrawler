@@ -59,55 +59,52 @@ namespace NCrawler
 		#region Instance Properties
 
 		[DataMember]
-		public string CharacterSet { get; internal set; }
+		public string CharacterSet { get; set; }
 
 		[DataMember]
-		public string ContentEncoding { get; internal set; }
+		public string ContentEncoding { get; set; }
 
 		[DataMember]
-		public string ContentType { get; internal set; }
+		public string ContentType { get; set; }
 
 		[DataMember]
 		public TimeSpan DownloadTime { get; set; }
 
 		[DataMember]
-		public WebHeaderCollection Headers { get; internal set; }
+		public IDictionary<string, IEnumerable<string>> Headers { get; set; }
 
 		[DataMember]
-		public bool IsMutuallyAuthenticated { get; internal set; }
+		public DateTime LastModified { get; set; }
 
 		[DataMember]
-		public DateTime LastModified { get; internal set; }
-
-		[DataMember]
-		public string Method { get; internal set; }
+		public string Method { get; set; }
 
 		[DataMember]
 		public Uri OriginalReferrerUrl { get; }
 
 		[DataMember]
-		public string OriginalUrl { get; internal set; }
+		public string OriginalUrl { get; set; }
 
 		[DataMember]
-		public Version ProtocolVersion { get; internal set; }
+		public Version ProtocolVersion { get; set; }
 
 		[DataMember]
-		public CrawlStep Referrer { get; internal set; }
+		public CrawlStep Referrer { get; set; }
 
 		[DataMember]
 		public byte[] Response { get; set; }
 
 		[DataMember]
-		public Uri ResponseUri { get; internal set; }
+		public Uri ResponseUri { get; set; }
 
 		[DataMember]
-		public string Server { get; internal set; }
+		public string Server { get; set; }
 
 		[DataMember]
-		public HttpStatusCode StatusCode { get; internal set; }
+		public HttpStatusCode StatusCode { get; set; }
 
 		[DataMember]
-		public string StatusDescription { get; internal set; }
+		public string StatusDescription { get; set; }
 
 		[DataMember]
 		public CrawlStep Step { get; set; }

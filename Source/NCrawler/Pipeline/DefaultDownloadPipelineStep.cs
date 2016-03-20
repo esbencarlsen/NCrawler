@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace NCrawler.Pipeline
 {
-	public class DownloadPipelineStep : IPipelineStep
+	public class DefaultDownloadPipelineStep : IPipelineStep
 	{
-		public DownloadPipelineStep(int maxDegreeOfParallelism)
+		public DefaultDownloadPipelineStep(int maxDegreeOfParallelism)
 		{
 			MaxDegreeOfParallelism = maxDegreeOfParallelism;
 		}
@@ -57,8 +59,7 @@ namespace NCrawler.Pipeline
 			propertyBag.CharacterSet = httpWebResponse.CharacterSet;
 			propertyBag.ContentEncoding = httpWebResponse.ContentEncoding;
 			propertyBag.ContentType = httpWebResponse.ContentType;
-			propertyBag.Headers = httpWebResponse.Headers;
-			propertyBag.IsMutuallyAuthenticated = httpWebResponse.IsMutuallyAuthenticated;
+			propertyBag.Headers = httpWebResponse.Headers.AllKeys.ToDictionary(key => key, key => (IEnumerable<string>) new [] { httpWebResponse.Headers.Get(key) });
 			propertyBag.LastModified = httpWebResponse.LastModified;
 			propertyBag.Method = httpWebResponse.Method;
 			propertyBag.ProtocolVersion = httpWebResponse.ProtocolVersion;

@@ -107,7 +107,7 @@
     <Compile Include="Extensions\UrlExtensions.cs" />
     <Compile Include="ICrawler.cs" />
     <Compile Include="IPipelineStep.cs" />
-    <Compile Include="Pipeline\DownloadPipelineStep.cs" />
+    <Compile Include="Pipeline\DefaultDownloadPipelineStep.cs" />
     <Compile Include="Pipeline\EMailEntityExtractionProcessor.cs" />
     <Compile Include="Pipeline\LambdaFilterPipelineStep.cs" />
     <Compile Include="Pipeline\LinkExtractionPipelineStep.cs" />

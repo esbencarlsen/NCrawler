@@ -118,7 +118,7 @@ namespace NCrawler
 		/// <returns></returns>
 		public CrawlerConfiguration Download(int? maxDegreeOfParallelism = null)
 		{
-			return AddPipelineStep(new DownloadPipelineStep(maxDegreeOfParallelism.GetValueOrDefault(Environment.ProcessorCount)));
+			return AddPipelineStep(new DefaultDownloadPipelineStep(maxDegreeOfParallelism.GetValueOrDefault(Environment.ProcessorCount)));
 		}
 
 		public CrawlerConfiguration RemoveDuplicates(UriComponents uriSensitivity = UriComponents.AbsoluteUri)
