@@ -56,6 +56,11 @@ namespace NCrawler.Pipeline
 
 		private static void HttpWebResponseToPropertyBag(HttpWebResponse httpWebResponse, PropertyBag propertyBag)
 		{
+			if (httpWebResponse == null)
+			{
+				return;
+			}
+
 			propertyBag.CharacterSet = httpWebResponse.CharacterSet;
 			propertyBag.ContentEncoding = httpWebResponse.ContentEncoding;
 			propertyBag.ContentType = httpWebResponse.ContentType;

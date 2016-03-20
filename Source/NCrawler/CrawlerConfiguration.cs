@@ -125,7 +125,12 @@ namespace NCrawler
 		{
 			HashSet<string> linksAlreadyCrawled = new HashSet<string>();
 			return Where((crawler, propertyBag) =>
-				!linksAlreadyCrawled.Add(propertyBag.Step.Uri.GetUrlKeyString(uriSensitivity)));
+				linksAlreadyCrawled.Add(propertyBag.Step.Uri.GetUrlKeyString(uriSensitivity)));
+		}
+
+		public CrawlerConfiguration DownloadDelay(TimeSpan delayFor)
+		{
+			return Do(async (crawler, propertyBag) => await Task.Delay(delayFor));
 		}
 
 		public CrawlerConfiguration MaxCrawlDepth(int maxCrawlDepth)

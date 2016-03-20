@@ -1,4 +1,6 @@
-﻿using NConsoler;
+﻿using System;
+
+using NConsoler;
 
 using NCrawler.Console.Extensions;
 using NCrawler.HtmlProcessor;
@@ -34,13 +36,13 @@ namespace NCrawler.Console
 
 			new CrawlerConfiguration()
 				.CrawlSeed(url)
+				.RemoveDuplicates()
 				.WhereHostInCrawlSeed()
 				//.Robots()
-				.Download(10)
+				.Download(Environment.ProcessorCount * 3)
 				.LogDownloadTime()
 				.HtmlProcessor()
 				.LogExceptions()
-				.LogDownloadTime()
 				.Run();
 		}
 
