@@ -212,4 +212,5 @@ _Pvt_Extensions/
 ModelManifest.xml
 _ReSharper.Caches
 /Output
+/Source/Tools
 /dump.rdb

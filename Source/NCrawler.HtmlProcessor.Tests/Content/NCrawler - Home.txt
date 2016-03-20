@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="Chrome" prefix="og: http://ogp.me/ns# profile: http://ogp.me/ns/profile#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta id="CompatabilityMode" http-equiv="X-UA-Compatible" content="IE=edge">
+	    
+        <link href="./NCrawler - Home_files/StyleSheet.ashx" id="MasterCss" rel="stylesheet" type="text/css">
+        <link rel="SHORTCUT ICON" href="http://www.codeplex.com/favicon.ico">
+        <title>NCrawler - Home</title>
+        
+        <!--
+        Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code,
+        not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx.
+        -->
+        <script src="./NCrawler - Home_files/jquery-1.4.4.min.js" type="text/javascript"></script><script type="text/javascript">try {
+window.AG_onLoad = function(func) { if (window.addEventListener) { window.addEventListener('DOMContentLoaded', func); } };
+window.AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+window.AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+window.AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+        
+        <script type="text/javascript">
+            if (typeof jQuery === 'undefined') {
+                document.write(unescape("%3Cscript src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <script src="./NCrawler - Home_files/jquery-ui.min.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            if (typeof jQuery.ui === 'undefined') {
+                document.write(unescape("%3Cscript src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js' type='text/javascript'%3E%3C/script%3E"));
+            }
+        </script>
+
+        
+            <script type="text/javascript">
+                var appInsights=window.appInsights||function(config){
+                    function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},r=document,f=window,e="script",o=r.createElement(e),i,u;for(o.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",r.getElementsByTagName(e)[0].parentNode.appendChild(o),t.cookie=r.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)s("track"+i.pop());return config.disableExceptionTracking||(i="onerror",s("_"+i),u=f[i],f[i]=function(config,r,f,e,o){var s=u&&u(config,r,f,e,o);return s!==!0&&t["_"+i](config,r,f,e,o),s}),t
+                }({
+                    instrumentationKey:"3a5c29be-06e6-465e-862f-c10a5d93d3a2"
+                });
+    
+                window.appInsights=appInsights;
+                appInsights.trackPageView();
+            </script><script src="./NCrawler - Home_files/ai.0.js"></script>
+        
+    <style type="text/css">.SideBar, .SideBarPadding{display:none;}.MainContent{width:auto;}.SiteContentTable{width:100%;}</style>
+    <style id="ProjectStyles" type="text/css">
+        .SiteHeader, .SiteHeaderLeft {
+            height:45px !important;
+            overflow:hidden;
+        }
+        .SiteContent 
+        {
+            padding: 0 0 1em 0;
+            margin-top:0;
+            min-height:225px;
+            border-right: 1px solid lightgrey;
+            border-left: 1px solid lightgrey;
+            border-bottom: 1px solid lightgrey;
+        }
+        .IE table.MinWidthContent
+        {
+	        table-layout: auto !important;	
+        }
+    </style>
+    
+    
+    <style type="text/css">.ProjectContent{padding:0;}</style>
+    <style type="text/css">
+        .WikiHolder
+        {
+            margin: 0 1em 0 0;
+        }
+        #WikiContent
+        {
+            margin-top: 15px;
+        }
+        #WikiBreadCrumbs
+        {
+            margin: 0.25em 0 1em 0;
+        }
+        .SecondarySearchButton 
+        {
+            margin:0 0 0 -0.6em;
+        }
+        .FF .SecondarySearchButton 
+        {
+            margin:-0.1em 0 0 -0.5em;
+            height: 22px;
+        }
+        .IE .SecondarySearchButton
+        {
+            width: 22px;
+            height: 22px;
+        }
+    </style>
+    
+    
+    
+    
+    <meta id="WTProjectName" name="WT.pi" content="ncrawler">
+    
+
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://ncrawler.codeplex.com/rsd">
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" title="WLWManifest" href="http://ncrawler.codeplex.com/wlwmanifest.xml">
+    
+    
+        <link rel="alternate" type="application/rss+xml" title="NCrawler" url="http://ncrawler.codeplex.com/project/feeds/rss">
+    
+        
+        <link rel="alternate" type="application/rss+xml" title="NCrawler - Issues" url="http://ncrawler.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fworkitem%2fncrawler">
+        
+        <link rel="alternate" type="application/rss+xml" title="NCrawler - Downloads" url="http://ncrawler.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2frelease%2fncrawler">
+        <link rel="alternate" type="application/rss+xml" title="NCrawler - Reviews" url="http://ncrawler.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2freview%2fncrawler">
+        
+    
+        <link rel="alternate" type="application/rss+xml" title="NCrawler - Source code" url="http://ncrawler.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fsourcecontrol%2fncrawler">
+        <link rel="alternate" type="application/rss+xml" title="NCrawler - Wiki" url="http://ncrawler.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fwiki%2fncrawler">
+    
+        
+    
+        <meta content="summary" name="twitter:card"><meta content="@CodePlex" name="twitter:site"><meta content="http://ncrawler.codeplex.com/Wikipage?ProjectName=ncrawler" name="twitter:url"><meta content="NCrawler" name="twitter:title"><meta content="Simple and very efficient multithreaded web crawler with pipeline based processing written in C&amp;#35;. Contains HTML, Text, PDF, and IFilter document processors and language detection&amp;#40;Google&amp;#41;. Easy to add pipeline steps to extract, use and alter information." name="twitter:description"><meta content="http://www.codeplex.com/Images/codeplex.png" name="twitter:image"><meta content="CodePlex" property="og:site_name"><meta content="http://ncrawler.codeplex.com/Wikipage?ProjectName=ncrawler" property="og:url"><meta content="object" property="og:type"><meta content="NCrawler" property="og:title"><meta content="Simple and very efficient multithreaded web crawler with pipeline based processing written in C&amp;#35;. Contains HTML, Text, PDF, and IFilter document processors and language detection&amp;#40;Google&amp;#41;. Easy to add pipeline steps to extract, use and alter information." property="og:description"><meta content="http://www.codeplex.com/Images/codeplex.png" property="og:image">
+        
+
+    </head>
+    
+    <body>
+        <script src="./NCrawler - Home_files/ScriptLoader.ashx" type="text/javascript"></script>
+        <form id="aspnetForm" autocomplete="off" method="POST" enctype="multipart/form-data">
+            <input name="__RequestVerificationToken" type="hidden" value="P__DfivArwVXG8wXF8eOAMJWLA_x4MJYMbnyxDq3yxr5iyP_CYhvfSbNWbEITqZDorbgtYiby8ZMeDGMnZ5-eLViXJBpIBa7dLPDlMG1FSnjPq7ZoThqS3Jv9dXbc_1gd89_xw2"><input name="__RequestVerificationToken2" type="hidden" value="__RequestVerificationToken2ae8fd9df-982c-40c6-9c16-02521024ba25">
+            
+            
+            
+            <div style="display:none;">
+                
+                <img id="BlankImage" style="width:0;height:0;" src="./NCrawler - Home_files/blank.png" onload="self.logoImageLoaded=true;">
+
+                <script language="javascript" type="text/javascript">
+                    var date = new Date();
+                    var timezoneOffset = date.getTimezoneOffset() / 60 * -1;
+                    var timezoneOffsetCookie = getCookie("TimezoneOffset");
+                    var firstTimeSetTimezoneCookie = false;
+
+                    if (timezoneOffsetCookie == null || timezoneOffsetCookie != timezoneOffset) {
+                        firstTimeSetTimezoneCookie = true;
+                        document.cookie = "TimezoneOffset=" + timezoneOffset + '; domain=.codeplex.com;expires=Mon, 20 Mar 2017 04:35:48 UTC';
+                    }
+                </script>
+            </div>
+            
+            <div id="header">
+                <div id="header_wrap" class="row">
+                    <p id="logo"><a href="http://www.codeplex.com/">Code<span class="semi">Plex</span></a><span id="tagline">Project Hosting for Open Source Software</span></p>
+                    
+
+<ul id="nav">
+
+    <li><a href="http://ncrawler.codeplex.com/site/register/new" id="registerLink" class="ZoomFix">Register</a></li>
+    <li><a class="SignInLink" href="https://www.codeplex.com/site/login?RedirectUrl=http%3a%2f%2fncrawler.codeplex.com%2fWikipage" id="signInLink">Sign In</a></li>
+  
+    <li class="last"><a class="rss_site_icon" href="http://www.codeplex.com/site/feeds/rss" type="application/rss+xml" rel="Alternate" title="CodePlex Site Activity"></a></li>
+</ul>
+                    <input id="searchsite" name="searchsite" maxlength="500" type="text" value="" autocomplete="off" data-searchtype="searchbox" title="Search all projects" style="color: rgb(170, 170, 170); font-style: italic;"><span id="search_mag"><a id="submitSearch" name="submitSearch" class="magnify" title="Search all projects" href="http://ncrawler.codeplex.com/#" data-searchtype="icon"></a></span>
+                    <script>
+	$(document).ready(function() {
+    var searchButton = $('#submitSearch'),
+        searchBar = $('#searchsite');
+
+    // Register our own handler for the search event while we wait for the SearchBox script to load.
+    searchButton.bind('click.backupSearchBox', doProjectSearch);
+    searchBar.bind('keypress.backupSearchBox', function(e) { if ($keyCode(e) === 13) { doProjectSearch(); return false; } });
+
+    function cleanupSearchEvents() {
+        // If the SearchBox was loaded, unregister our handlers.
+        if (epx_loaded) {
+            searchButton.unbind('.backupSearchBox');
+            searchBar.unbind('.backupSearchBox');
+        }
+    }
+
+    $loadScript('http://i4.services.social.microsoft.com/search/Widgets/SearchBox.jss?appid=1000&scopeid=1&boxId=searchsite&btnId=submitSearch&watermark=Search%20all%20projects&overrideWatermark=true&searchLocation=%2fsite%2fsearch&allowEmptySearch=true&focusOnInit=False&minimumTermLength=3', cleanupSearchEvents);
+})
+function doProjectSearch() {
+    
+    var url = '/site/search';
+
+    //If search term is not same as watermark
+    if($('#searchsite').val() != 'Search all projects')    
+    {        
+        url = url + '?query=' + encodeURIComponent($('#searchsite').val());
+    }
+
+    
+    var callback = '';
+    if (callback.length > 0 && eval('typeof ' + callback) != 'undefined')
+        url += eval(callback + '()');
+
+    window.location.href = url;
+    return false;
+}
+</script>
+                <div id="SearchFlyoutContainer" style="display: none; text-align: left; border: 1px solid buttonshadow; position: absolute; z-index: 1000; padding: 2px; color: rgb(122, 132, 142); font-family: &#39;Segoe UI&#39;, &#39;Microsoft Sans Serif&#39;, Arial, Geneva, sans-serif; font-size: 13.008px; background-color: rgb(255, 255, 255);"><div id="SuggestionContainer"><ul data-searchtype="search dropdown" style="list-style: none; padding: 4px 2px 0px 1px; cursor: pointer; margin: 1px; white-space: nowrap;"></ul></div></div></div>
+            </div>
+            
+            <div id="wrap">
+                
+    <div id="sub_heading" class="row">
+        
+        <div id="ProjectHeader">
+            <div id="project_title_row" class="row">
+                <div id="project_logo">
+                    
+    
+    <h1 class="text_only"><a href="http://ncrawler.codeplex.com/" id="ProjectTitle1"><div>NCrawler</div></a></h1>
+
+                </div>
+            </div>
+        </div>
+        
+        <div id="ProjectDetailsDiv">
+            
+        </div>
+		<div class="clear"></div>
+        
+
+<ul id="page_box_links">
+	<li id="homeTabCell" style="width: 96px;"><a id="homeTab" href="http://ncrawler.codeplex.com/" class="home_active">home</a><div></div></li>
+    
+	<li id="sourceTabCell" style="width: 146px;"><a id="sourceTab" href="http://ncrawler.codeplex.com/SourceControl/latest" class="box_source">source code</a><div></div></li>
+    
+	<li id="releasesTabCell" style="width: 138px;"><a id="releasesTab" href="http://ncrawler.codeplex.com/releases" class="box_downloads">downloads</a><div></div></li>
+    
+    <li id="documentationTabCell" style="width: 176px;"><a id="documentationTab" href="http://ncrawler.codeplex.com/documentation" class="box_documentation">documentation</a><div></div></li>
+    
+	<li id="workItemsTabCell" style="width: 103px;"><a id="workItemsTab" href="http://ncrawler.codeplex.com/workitem/list/basic" class="box_issue">issues</a><div></div></li>
+    
+	<li id="peopleTabCell" style="width: 103px;"><a id="peopleTab" href="http://ncrawler.codeplex.com/team/view" class="box_people">people</a><div></div></li>
+	<li id="licenseTabCell" style="width: 103px;" class="last"><a id="licenseTab" href="http://ncrawler.codeplex.com/license" class="box_license">license</a><div></div></li>
+    
+    <span class="stretch"></span>
+</ul>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#page_box_links').applyLastClassToList();
+    });
+</script>
+		    <div class="clear"></div>
+            
+    <div id="DeleteWikiPagePanel" class="modal" style="display: none;">
+        <div class="row">
+            <h2>Are you Sure? <a href="javascript:return false;" class="close">X</a></h2>
+        </div>
+        <div class="modal_info">
+            By clicking Delete, all history, comments and attachments for this page will be deleted and cannot be restored.
+            <div class="modal_buttons">
+                <input type="button" id="CancelButton" class="cancel" value="Cancel">
+                <input type="button" id="DeleteButton" class="ok" value="Delete">
+            </div>
+            <div class="ClearBoth"></div>
+        </div>
+    </div>
+    
+    <div id="homepage_sub_menu">
+		<ul class="page_box_sublinks">
+            
+                <li><a id="pageInfoHyperLink" href="http://ncrawler.codeplex.com/wiki/PageInfo?title=Home" title="Page information for Home page.">Page Info</a></li>
+            
+            <li class="last"><a id="changesHyperlink" href="http://ncrawler.codeplex.com/wikipage/history" title="View change history for all pages.">Change History (all pages)</a></li>
+		</ul>
+        
+
+<div>
+    
+    <div id="actionBar" class="action_bar">
+        <ul id="actionBar_ul" class="actionBar_sublinks subtab_right" style="vertical-align: middle;">
+
+            
+
+                <li id="li_actionbar_followproject" data-action-id="actionbar_followproject" data-action-type="None" class="actionBar_sublinks" data-options-id="c8a07aab-c0cf-4404-be5c-ff3ea291a220">
+                
+                     
+                    
+                    <div class="actionBar_custom_content"></div>
+
+                    <a href="http://ncrawler.codeplex.com/#" id="actionbar_followproject" title="Follow this project to get updates in your activity stream." class="action_bar_item_link"><img id="img_actionbar_followproject" class="action_bar_item_image" src="./NCrawler - Home_files/actionbar_follow.png" style="vertical-align: middle"> Follow (211)</a>
+
+                </li>
+
+            
+
+                <li id="li_actionbar_subscribe" data-action-id="actionbar_subscribe" data-action-type="PopUp" class="actionBar_sublinks last" data-options-id="b393d9a2-718a-4a8b-bbbe-b550426a4a2c">
+                
+                    <script class="options" defer="defer" id="b393d9a2-718a-4a8b-bbbe-b550426a4a2c" type="application/json">{}</script> 
+                    
+                    <div class="actionBar_custom_content">
+
+<div id="rssHoverDiv" class="HoverPanel LeftHoverWidth" style="display: none">
+        <ul id="3_FeedsPanel" class="RssFeedsPanel">
+            <li>
+                <a id="ProjectRssLink" href="http://ncrawler.codeplex.com/project/feeds/rss" class="ArrowSmall NoUnderline">All Project Updates</a>
+            </li>
+            
+            <li>
+                <a id="IssueTrackerRssLink" href="http://ncrawler.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fworkitem%2fncrawler" class="ArrowSmall NoUnderline">Issue Tracker</a>
+            </li>
+            
+            <li>
+                <a id="ReleasesRssLink" href="http://ncrawler.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2frelease%2fncrawler" class="ArrowSmall NoUnderline">Downloads</a>
+            </li>
+            <li>
+                <a id="ReviewsRssLink" href="http://ncrawler.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2freview%2fncrawler" class="ArrowSmall NoUnderline">Reviews</a>
+            </li>
+            
+            <li>
+                <a id="SourceControlRssLink" href="http://ncrawler.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fsourcecontrol%2fncrawler" class="ArrowSmall NoUnderline">Source Code</a>
+            </li>
+            <li>
+                <a id="WikiRssLink" href="http://ncrawler.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fwiki%2fncrawler" class="ArrowSmall NoUnderline">Wiki &amp; Documentation</a>
+            </li>
+        </ul>
+</div></div>
+
+                    <a href="http://ncrawler.codeplex.com/#" id="actionbar_subscribe" title="Subscribe to project updates in RSS feeds." class="action_bar_item_link">
+                        <img id="img_actionbar_subscribe" class="action_bar_item_image" src="./NCrawler - Home_files/actionbar_subscribe.png" style="vertical-align: middle">
+                        Subscribe
+                    </a>
+
+                </li>
+
+            
+        </ul>
+    </div>
+</div>
+        <div class="clear"></div>
+    </div>
+    
+        
+
+    </div>
+    
+    
+    
+<div id="left_column" class="no_border">
+    
+
+    <div class="WikiHolder">
+
+        
+            <div id="WikiContent" class="WikiContent">
+                
+<div class="wikidoc"><b>Project Description</b><br>
+Simple and very efficient multithreaded web crawler with pipeline based processing written in C#. Contains HTML, Text, PDF, and IFilter document processors and language detection(Google). Easy to add pipeline steps to extract, use and alter information.<br>
+<br>
+<br>
+NCrawler targets both .Net v.3.5 and v.4.0<br>
+</div>
+<div></div>
+
+            </div>
+        
+                <p>Last edited <span class="smartDate" title="8/6/2010 9:17:12 PM" localtimeticks="1281154632">Aug 6, 2010 at 9:17 PM</span> by <a id="wikiEditByLink" href="http://www.codeplex.com/site/users/view/EsbenCarlsen">EsbenCarlsen</a>, version 11</p>
+            
+    </div>
+    
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#deleteWikiHyperLink').click(function () {
+                OpenDialog('#DeleteWikiPagePanel', true, '30em');
+            });
+            $('#DeleteButton').click(function () {
+                OpenDialog('#DeleteWikiPagePanel', false);
+                CodePlex.UpdateProgress.show();
+                $.ajax({
+                    type: 'DELETE',
+                    url: 'http://ncrawler.codeplex.com/',
+                    data: {title: $('#WikiTitle').val()},
+                    success: function (data) {
+                        CodePlex.UpdateProgress.hide();
+                        window.location = data;
+                    },
+                    error: function (data) {
+                        CodePlex.UpdateProgress.hide();
+                    }
+                });
+            });
+            $('#CancelButton').click(function () {
+                OpenDialog('#DeleteWikiPagePanel', false);
+            });
+            
+            
+        });
+    </script>
+</div>
+
+        
+	<div id="right_sidebar">
+        
+
+<input name="" type="text" maxlength="500" id="wiki_search" title="Search Wiki and Documentation" class="EmptyTextBox"><a id="SearchButton" class="wiki_magnify" href="http://ncrawler.codeplex.com/#" title="Search Wiki and Documentation"></a>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#wiki_search').keypress(function (e) {
+            if (e.keyCode == 13) {
+                wikiSearch();
+                return false;
+            }
+        });
+
+        $('#SearchButton').click(function () {
+            wikiSearch();
+            return false;
+        });
+
+        $('#wiki_search').promptBox('Search Wiki & Documentation');
+
+    });
+    function setWikiCommentTextBoxFocus() {
+        $('#Comment').focus();
+        return false;
+    }
+
+    function wikiSearch() {
+        var $textbox = $('#wiki_search');
+        if($textbox.attr('dirty') != 'true')
+            return;
+        var searchText = encodeURIComponent(jQuery.trim($textbox.val()));
+        if(searchText != null & searchText.length > 0)
+            window.location.href = 'http://ncrawler.codeplex.com/wiki/search?tab=Home&SearchText=' + searchText;
+    }
+
+</script>
+                <a id="download_button" href="http://ncrawler.codeplex.com/#" d:posturl="http://ncrawler.codeplex.com/releases/captureDownload" d:fileid="140837" d:clickoncepath="" onclick="return $.release.fn.downloadFile(this);">
+                    download
+                </a>
+                
+<div id="ClickOnceOperaPanel" class="modal" style="display: none;">
+    <div class="row">
+        <h2>Opera does not support ClickOnce <a href="javascript:return false;" class="close">X</a></h2>
+    </div>
+    <div class="modal_info">
+        <div class="Body">
+            To install this application, save it and then open it.  Opening it directly from Opera will not work correctly.
+        </div>
+        <div class="modal_buttons">
+            <input type="button" class="ok" onclick="operaContinue();" value="Ok">
+        </div>    
+        <div class="ClearBoth"></div>
+    </div>
+</div>
+	<div id="current_rating">
+        <table>
+            <tbody><tr>
+    			<th><span class="rating_header">current</span></th>
+    			<td>
+                    NCrawler v. 3
+    			</td>
+            </tr>
+            <tr>
+    			<th><span class="rating_header">date</span></th>
+    			<td><span class="smartDate full" title="8/6/2010 8:00:00 AM" localtimeticks="1281106800">Fri Aug 6, 2010 at 8:00 AM</span></td>
+            </tr>
+            <tr>
+    			<th><span class="rating_header">status</span></th>
+    			<td>Stable</td>
+            </tr>
+            <tr>
+    			<th><span class="rating_header">downloads</span></th>
+    			<td>14,598</td>
+            </tr>
+            <tr>
+    			<th><span class="rating_header">rating</span></th>
+                <td>
+                    <span id="releaseRatingContainer" title="4.8 star rating"><span id="releaseRating_Star_0" class="RatingStar FilledRatingStar" d:rating="1" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="releaseRating_Star_1" class="RatingStar FilledRatingStar" d:rating="2" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="releaseRating_Star_2" class="RatingStar FilledRatingStar" d:rating="3" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="releaseRating_Star_3" class="RatingStar FilledRatingStar" d:rating="4" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="releaseRating_Star_4" class="RatingStar HalfRatingStar" d:rating="5" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="releaseratingName"></span><input id="releasecurrentRating" type="hidden" value="4.846154"></span>
+                    <span class="right">
+                        13 ratings
+                    </span>
+                    <br>
+                    
+                    <a href="http://ncrawler.codeplex.com/releases/view/50203?RateReview=true">Review this release</a>
+                    
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+	<div id="recent_reviews">
+	    <h2>Most Helpful Reviews</h2>
+        
+            <p class="review"><span id="RatingContainer" title="5 star rating"><span id="Rating_Star_0" class="RatingStar FilledRatingStar" d:rating="1" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_1" class="RatingStar FilledRatingStar" d:rating="2" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_2" class="RatingStar FilledRatingStar" d:rating="3" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_3" class="RatingStar FilledRatingStar" d:rating="4" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_4" class="RatingStar FilledRatingStar" d:rating="5" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="ratingName"></span><input id="currentRating" type="hidden" value="5"></span>Great tool for .NET Framework!</p>
+        
+            <p class="review"><span id="RatingContainer" title="5 star rating"><span id="Rating_Star_0" class="RatingStar FilledRatingStar" d:rating="1" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_1" class="RatingStar FilledRatingStar" d:rating="2" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_2" class="RatingStar FilledRatingStar" d:rating="3" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_3" class="RatingStar FilledRatingStar" d:rating="4" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_4" class="RatingStar FilledRatingStar" d:rating="5" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="ratingName"></span><input id="currentRating" type="hidden" value="5"></span>excellent!!!</p>
+        
+        <a id="view_all_reviews" href="http://ncrawler.codeplex.com/releases/view/50203#ReviewsAnchor">View all reviews</a>
+        <div class="clear"></div>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#PageActivity .Link').click(function () {
+                var val = $(this).attr('d:value');
+                $.post('http://ncrawler.codeplex.com/stats/getActivity',
+                    { period: val },
+                    function (data) {
+                        $('#PageActivity span').hide();
+                        $('#PageActivity .Link').show();
+                        $('#Page' + val + 'Label').show();
+                        $('#Page' + val + 'Link').hide();
+                        $('#pageViews').text(data.PageViews);
+                        $('#visits').text(data.Visits);
+                        $('#downloads').text(data.Downloads);
+                    }, 'json');
+                return false;
+            });
+        });
+</script>
+<div id="activity">
+	<h2>activity</h2>
+
+	<div class="clear"></div>
+
+    <table>
+	    <tbody><tr>
+            <th class="t_heading">downloads</th>
+	    </tr>
+		<tr>
+			<td><span id="downloads">55</span></td>
+		</tr>
+    </tbody></table>
+
+	<ul id="PageActivity"> 
+		<li>Days: </li>
+		<li>
+		    <span id="Page7Label">7</span>
+            <a id="Page7Link" href="http://ncrawler.codeplex.com/#" class="Link" style="display:none;" d:value="7">7</a>
+		</li>
+		<li>
+		    <span id="Page30Label" style="display:none;">30</span>
+            <a id="Page30Link" href="http://ncrawler.codeplex.com/#" class="Link" d:value="30">30</a>
+		</li>
+		<li>
+		    <span id="Page-1Label" style="display:none;">All</span>
+            <a id="Page-1Link" href="http://ncrawler.codeplex.com/#" class="Link" d:value="-1">All</a>
+		</li>
+        <li id="activity_details"><a href="http://ncrawler.codeplex.com/stats">Details</a></li>
+	</ul>
+
+</div>
+
+    </div>
+
+        
+                
+                <div class="clear"></div>
+                
+                <div id="footer">
+                    <div class="row">
+                        <hr>
+                        <ul>
+                            <li>© 2006-2016 Microsoft</li>
+                            <li><a href="http://www.codeplex.com/site/help">Get Help</a></li>
+                            <li><a href="http://ncrawler.codeplex.com/site/legal/privacy">Privacy Statement</a></li>
+                            <li><a href="http://www.codeplex.com/site/legal/terms">Terms of Use</a></li>
+                            <li><a href="http://www.codeplex.com/site/legal/conduct">Code of Conduct</a></li>
+                            <li><a href="http://developermedia.com/" target="_blank">Advertise With Us</a></li>
+                            <li>Version 8.21.2015.21031</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all  ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-UpdateProgressPanel" style="display: none; z-index: 1000; outline: 0px; position: absolute;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title" id="ui-dialog-title-UpdateProgressPanel">&nbsp;</span><a href="http://ncrawler.codeplex.com/#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div id="UpdateProgressPanel" class="loading_animation ui-dialog-content ui-widget-content">
+                <div class="row">
+                    <h2 class="anim_h2">
+                        <span id="UpdateProgressText">Updating...</span>
+                        <span id="animatedLoadingIconContainer">
+                            <img id="animatedLoadingIcon" src="./NCrawler - Home_files/loading_animation.gif" class="anim_img">
+                        </span>
+                    </h2>
+                </div>
+            </div><div class="ui-resizable-handle ui-resizable-n"></div><div class="ui-resizable-handle ui-resizable-e"></div><div class="ui-resizable-handle ui-resizable-s"></div><div class="ui-resizable-handle ui-resizable-w"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-icon-grip-diagonal-se" style="z-index: 1001;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 1002;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1003;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1004;"></div></div></body></html>
