@@ -2,6 +2,7 @@
 
 using NCrawler.Console.Extensions;
 using NCrawler.HtmlProcessor;
+using NCrawler.PDFBox;
 using NCrawler.Toxy;
 using NCrawler.Utils;
 
@@ -49,7 +50,7 @@ namespace NCrawler.Console
 
 			new CrawlerConfiguration()
 				//.CrawlSeed("http://cdon.se/")
-				.CrawlSeed("http://www.orimi.com/pdf-test.pdf")
+				.CrawlSeed("http://www.exinfm.com/excel%20files/capbudg.xls")
 				//.Crawl("https://www.vergic.com")
 				//.Where((crawler, bag) => bag.Step.Uri.Host.Contains("vergic.com"))
 				//.WhereHostInCrawlSeed()
@@ -57,9 +58,10 @@ namespace NCrawler.Console
 				//.Crawl("http://nelly.com/")
 				//.Crawl("http://qliro.se/")
 				//.MaxCrawlCount(10)
-				.DownloadStep(10)
+				.Download(10)
 				.LogDownloadTime()
 				.HtmlProcessor()
+				.PdfTextExtractProcessor()
 				.TextExtractProcessor()
 				//.TextProcessor()
 				//.ExtractEmail()

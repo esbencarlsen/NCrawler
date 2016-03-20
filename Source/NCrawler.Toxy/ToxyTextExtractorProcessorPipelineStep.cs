@@ -18,8 +18,7 @@ namespace NCrawler.Toxy
 			{"application/vnd.ms-excel", "xsl"},
 			{"application/x-msexcel", "xsl"},
 			{"application/word", "doc"},
-			{"application/msword", "doc"},
-			{"application/pdf", "pdf"}
+			{"application/msword", "doc"}
 		};
 
 		public ToxyTextExtractorProcessorPipelineStep(int maxDegreeOfParallelism)

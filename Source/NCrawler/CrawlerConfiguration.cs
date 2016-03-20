@@ -85,7 +85,7 @@ namespace NCrawler
 		public CrawlerConfiguration Default()
 		{
 			RemoveDuplicates();
-			DownloadStep();
+			Download();
 			return this;
 		}
 
@@ -102,16 +102,21 @@ namespace NCrawler
 			ServicePointManager.EnableDnsRoundRobin = true;
 		}
 
-		public void AddLoggerStep()
+		public CrawlerConfiguration AddLoggerStep()
 		{
-			Where((crawler, propertyBag) =>
+			return Where((crawler, propertyBag) =>
 			{
 				Logger.Verbose("Uri {uri}", propertyBag.Step.Uri);
 				return true;
 			});
 		}
 
-		public CrawlerConfiguration DownloadStep(int? maxDegreeOfParallelism = null)
+		/// <summary>
+		/// This step does the actual download
+		/// </summary>
+		/// <param name="maxDegreeOfParallelism"></param>
+		/// <returns></returns>
+		public CrawlerConfiguration Download(int? maxDegreeOfParallelism = null)
 		{
 			return AddPipelineStep(new DownloadPipelineStep(maxDegreeOfParallelism.GetValueOrDefault(Environment.ProcessorCount)));
 		}
@@ -136,12 +141,10 @@ namespace NCrawler
 
 		public CrawlerConfiguration LogDownloadTime()
 		{
-			return
-				Do(
-					(crawler, propertyBag) =>
-					{
-						Logger.Verbose("{0} downloaded in {1}", propertyBag.Step.Uri, propertyBag.DownloadTime);
-					});
+			return Do((crawler, propertyBag) =>
+				{
+					Logger.Verbose("{0} downloaded in {1}", propertyBag.Step.Uri, propertyBag.DownloadTime);
+				});
 		}
 
 		public CrawlerConfiguration MaximumUrlLength(int maxUrlLength)

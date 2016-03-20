@@ -120,16 +120,17 @@ namespace NCrawler.HtmlProcessor
 			{
 				baseUrl = nodes
 					.Select(entry => new {entry, href = entry.Attributes["href"]})
-					.Where(@t => !@t.href.IsNull() && !@t.href.Value.IsNullOrEmpty()
-						&& Uri.IsWellFormedUriString(@t.href.Value, UriKind.RelativeOrAbsolute))
-					.Select(@t =>
+					.Where(arg => !arg.href.IsNull()
+						&& !arg.href.Value.IsNullOrEmpty()
+						&& Uri.IsWellFormedUriString(arg.href.Value, UriKind.RelativeOrAbsolute))
+					.Select(t =>
 					{
-						if (Uri.IsWellFormedUriString(@t.href.Value, UriKind.Relative))
+						if (Uri.IsWellFormedUriString(t.href.Value, UriKind.Relative))
 						{
-							return propertyBag.ResponseUri.GetComponents(UriComponents.SchemeAndServer, UriFormat.Unescaped) + @t.href.Value;
+							return propertyBag.ResponseUri.GetComponents(UriComponents.SchemeAndServer, UriFormat.Unescaped) + t.href.Value;
 						}
 
-						return @t.href.Value;
+						return t.href.Value;
 					})
 					.AddToEnd(baseUrl)
 					.FirstOrDefault();
