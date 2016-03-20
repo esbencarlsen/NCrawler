@@ -121,6 +121,11 @@ namespace NCrawler
 					UserAgent = _userAgent
 				});
 			}
+
+			public void Stop()
+			{
+				_transformBlock.Complete();
+			}
 		}
 	}
 }
