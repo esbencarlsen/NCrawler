@@ -2,9 +2,9 @@
 {
 	public static class RobotsCrawlerConfigurationExtensions
 	{
-		public static CrawlerConfiguration Robots(this CrawlerConfiguration crawlerConfiguration)
+		public static CrawlerConfiguration Robots(this CrawlerConfiguration crawlerConfiguration, string searchPath = null)
 		{
-			crawlerConfiguration.AddPipelineStep(new RobotsPipelineStep(crawlerConfiguration.Logger));
+			crawlerConfiguration.AddPipelineStep(new RobotsPipelineStep(searchPath, crawlerConfiguration.Logger));
 			return crawlerConfiguration;
 		}
 	}

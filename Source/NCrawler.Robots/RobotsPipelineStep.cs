@@ -10,21 +10,27 @@ namespace NCrawler.Robots
 {
 	public class RobotsPipelineStep : IPipelineStep
 	{
+		public const string RobotsIsPathAllowedPropertyName = "RobotsIsPathAllowed";
 		private readonly HttpClient _httpClient = new HttpClient();
+		private readonly string _searchPath;
 		private readonly ILogger _logger;
 
 		private readonly IDictionary<string, RobotsTxt.Robots> _robotsInfo =
 			new Dictionary<string, RobotsTxt.Robots>();
 
-		public RobotsPipelineStep(ILogger logger)
+		public RobotsPipelineStep(string searchPath,
+			ILogger logger)
 		{
+			_searchPath = searchPath;
 			_logger = logger;
 		}
 
 		public async Task<bool> Process(ICrawler crawler, PropertyBag propertyBag)
 		{
-			string robotsHttpUrl =
-				$"{propertyBag.Step.Uri.GetComponents(UriComponents.SchemeAndServer, UriFormat.Unescaped).ToLowerInvariant()}/robots.txt";
+			string robotsHttpUrl = string.IsNullOrEmpty(_searchPath)
+				? $"{propertyBag.Step.Uri.GetComponents(UriComponents.SchemeAndServer, UriFormat.Unescaped).ToLowerInvariant()}/robots.txt"
+				: $"{propertyBag.Step.Uri.GetComponents(UriComponents.SchemeAndServer, UriFormat.Unescaped).ToLowerInvariant()}" + _searchPath;
+
 			RobotsTxt.Robots robots;
 			if (!_robotsInfo.TryGetValue(robotsHttpUrl, out robots))
 			{
@@ -60,8 +66,8 @@ namespace NCrawler.Robots
 			}
 
 			bool result = robots.IsPathAllowed(propertyBag.UserAgent, propertyBag.Step.Uri.ToString());
-			propertyBag["RobotsIsPathAllowed"].Name = nameof(RobotsPipelineStep);
-			propertyBag["RobotsIsPathAllowed"].Value = result;
+			propertyBag[RobotsIsPathAllowedPropertyName].Name = nameof(RobotsPipelineStep);
+			propertyBag[RobotsIsPathAllowedPropertyName].Value = result;
 			return result;
 		}
 

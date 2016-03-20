@@ -4,6 +4,7 @@ using NConsoler;
 
 using NCrawler.Console.Extensions;
 using NCrawler.HtmlProcessor;
+using NCrawler.Robots;
 using NCrawler.Utils;
 
 namespace NCrawler.Console
@@ -38,7 +39,7 @@ namespace NCrawler.Console
 				.CrawlSeed(url)
 				.RemoveDuplicates()
 				.WhereHostInCrawlSeed()
-				//.Robots()
+				.Robots()
 				.Download(Environment.ProcessorCount * 3)
 				.LogDownloadTime()
 				.HtmlProcessor()

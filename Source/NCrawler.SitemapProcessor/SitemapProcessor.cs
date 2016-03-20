@@ -3,57 +3,51 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 using NCrawler.Extensions;
 using NCrawler.HtmlProcessor.Extensions;
-using NCrawler.HtmlProcessor.Properties;
-using NCrawler.Interfaces;
 
 namespace NCrawler.SitemapProcessor
 {
 	/// <summary>
-	/// Courtesy of Muttok
+	///     Courtesy of Muttok
 	/// </summary>
 	public class SitemapProcessor : IPipelineStep
 	{
-		#region Instance Methods
-
-		protected virtual string NormalizeLink(string baseUrl, string link)
+		public SitemapProcessor(int maxDegreeOfParallelism)
 		{
-			return link.NormalizeUrl(baseUrl);
+			MaxDegreeOfParallelism = maxDegreeOfParallelism;
 		}
 
-		#endregion
-
-		#region IPipelineStep Members
-
-		public void Process(Crawler crawler, PropertyBag propertyBag)
+		public Task<bool> Process(ICrawler crawler, PropertyBag propertyBag)
 		{
-			if (propertyBag.StatusCode != HttpStatusCode.OK)
+			if (propertyBag.StatusCode != HttpStatusCode.OK
+				|| propertyBag.Response == null
+				|| propertyBag.Response.Length == 0)
 			{
-				return;
+				return Task.FromResult(true);
 			}
 
 			if (!IsXmlContent(propertyBag.ContentType))
 			{
-				return;
+				return Task.FromResult(true);
 			}
 
-			using (Stream reader = propertyBag.GetResponse())
-			using (StreamReader sr = new StreamReader(reader))
+			using (MemoryStream ms = new MemoryStream(propertyBag.Response))
 			{
-				XDocument mydoc = XDocument.Load(sr);
+				XDocument mydoc = XDocument.Load(ms);
 				if (mydoc.Root == null)
 				{
-					return;
+					return Task.FromResult(true);
 				}
 
 				XName qualifiedName = XName.Get("loc", "http://www.sitemaps.org/schemas/sitemap/0.9");
 				IEnumerable<string> urlNodes =
 					from e in mydoc.Descendants(qualifiedName)
 					where !e.Value.IsNullOrEmpty() && e.Value.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
-				    select e.Value;
+					select e.Value;
 
 				foreach (string url in urlNodes)
 				{
@@ -61,31 +55,30 @@ namespace NCrawler.SitemapProcessor
 					string baseUrl = propertyBag.ResponseUri.GetLeftPart(UriPartial.Path);
 					string decodedLink = ExtendedHtmlUtility.HtmlEntityDecode(url);
 					string normalizedLink = NormalizeLink(baseUrl, decodedLink);
-
 					if (normalizedLink.IsNullOrEmpty())
 					{
 						continue;
 					}
 
-					crawler.AddStep(new Uri(normalizedLink), propertyBag.Step.Depth + 1,
-						propertyBag.Step, new Dictionary<string, object>
-							{
-								{Resources.PropertyBagKeyOriginalUrl, url},
-								{Resources.PropertyBagKeyOriginalReferrerUrl, propertyBag.ResponseUri}
-							});
+					propertyBag["PropertyBagKeyOriginalUrl"].Value = url;
+					propertyBag["PropertyBagKeyOriginalReferrerUrl"].Value = propertyBag.ResponseUri;
+					crawler.Crawl(new Uri(normalizedLink), propertyBag);
 				}
 			}
+
+			return Task.FromResult(true);
 		}
 
-		#endregion
+		public int MaxDegreeOfParallelism { get; }
 
-		#region Class Methods
+		protected virtual string NormalizeLink(string baseUrl, string link)
+		{
+			return link.NormalizeUrl(baseUrl);
+		}
 
 		private static bool IsXmlContent(string contentType)
 		{
 			return contentType.StartsWith("text/xml", StringComparison.OrdinalIgnoreCase);
 		}
-
-		#endregion
 	}
 }

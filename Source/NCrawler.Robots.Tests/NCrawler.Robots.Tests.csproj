@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8279E5E5-82BB-45D1-B8DA-CB7D96A220B2}</ProjectGuid>
+    <ProjectGuid>{3F9F8660-1C88-495B-AFC9-F82AB63EF12E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NCrawler.WebServer</RootNamespace>
-    <AssemblyName>NCrawler.WebServer</AssemblyName>
+    <RootNamespace>NCrawler.Robots.Tests</RootNamespace>
+    <AssemblyName>NCrawler.Robots.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,8 +34,8 @@
       <HintPath>..\packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nancy.Hosting.Self, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -48,12 +48,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PortUtils.cs" />
-    <Compile Include="SimpleWebServer.cs" />
+    <Content Include="Content\Robots.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="RobotsPipelineStepTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NCrawler.Robots\NCrawler.Robots.csproj">
+      <Project>{ef2fc937-6a66-4014-bf52-8d4621f5997b}</Project>
+      <Name>NCrawler.Robots</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler.WebServer\NCrawler.WebServer.csproj">
+      <Project>{8279E5E5-82BB-45D1-B8DA-CB7D96A220B2}</Project>
+      <Name>NCrawler.WebServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCrawler\NCrawler.csproj">
+      <Project>{5E4DF149-F650-4152-8410-586FB9CCF644}</Project>
+      <Name>NCrawler</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

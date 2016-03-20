@@ -49,6 +49,7 @@
     <Compile Include="..\NCrawler\Properties\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CrawlerConfigurationExtensions.cs" />
     <Compile Include="SitemapProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

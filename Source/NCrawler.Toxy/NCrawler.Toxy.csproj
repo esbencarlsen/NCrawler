@@ -31,11 +31,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DCSoft.RTF, Version=1.0.0.13760, Culture=neutral, PublicKeyToken=2e40e961ea876340, processorArchitecture=MSIL">
-      <HintPath>..\packages\Toxy.1.4.0\lib\net45\DCSoft.RTF.dll</HintPath>
+      <HintPath>..\packages\Toxy.1.6.1.1\lib\net45\DCSoft.RTF.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="dmach.Mail, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1c083c80c2017fba, processorArchitecture=MSIL">
-      <HintPath>..\packages\Toxy.1.4.0\lib\net45\dmach.Mail.dll</HintPath>
+      <HintPath>..\packages\Toxy.1.6.1.1\lib\net45\dmach.Mail.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXmlSDK.2.0\lib\Net35\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
@@ -46,28 +50,36 @@
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.9.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.9\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
       <HintPath>..\packages\LumenWorks.Framework.IO.3.8.0\lib\net20\LumenWorks.Framework.IO.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NPOI, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.dll</HintPath>
+    <Reference Include="MsgReader, Version=1.9.6.0, Culture=neutral, PublicKeyToken=47f99f3a9a2648df, processorArchitecture=MSIL">
+      <HintPath>..\packages\Toxy.1.6.1.1\lib\net45\MsgReader.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NPOI.OOXML, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OOXML.dll</HintPath>
+    <Reference Include="NPOI, Version=2.2.0.2, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Toxy.1.6.1.1\lib\net45\NPOI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NPOI.OpenXml4Net, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    <Reference Include="NPOI.OOXML, Version=2.2.0.2, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Toxy.1.6.1.1\lib\net45\NPOI.OOXML.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NPOI.OpenXmlFormats, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.2.0.2, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Toxy.1.6.1.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.2.0.2, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Toxy.1.6.1.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NPOI.ScratchPad.HWPF, Version=1.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\Toxy.1.4.0\lib\net45\NPOI.ScratchPad.HWPF.dll</HintPath>
+      <HintPath>..\packages\Toxy.1.6.1.1\lib\net45\NPOI.ScratchPad.HWPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
@@ -96,11 +108,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Thought.vCards, Version=0.4.0.0, Culture=neutral, PublicKeyToken=48d3dbd26ddb59c9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Toxy.1.4.0\lib\net45\Thought.vCards.dll</HintPath>
+      <HintPath>..\packages\Toxy.1.6.1.1\lib\net45\Thought.vCards.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Toxy, Version=1.3.0.0, Culture=neutral, PublicKeyToken=48d3dbd26ddb59c9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Toxy.1.4.0\lib\net45\Toxy.dll</HintPath>
+    <Reference Include="Toxy, Version=1.6.1.0, Culture=neutral, PublicKeyToken=48d3dbd26ddb59c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\Toxy.1.6.1.1\lib\net45\Toxy.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

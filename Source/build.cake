@@ -21,8 +21,8 @@ var configuration = Argument<string>("configuration", "Release");
 
 var solutions = GetFiles("./**/*.sln");
 var solutionPaths = solutions.Select(solution => solution.GetDirectory());
-var srcDir = MakeAbsolute(Directory("./Source"));
-var outputDir = MakeAbsolute(Directory("./Output"));
+var srcDir = MakeAbsolute(Directory("./"));
+var outputDir = MakeAbsolute(Directory("./../Output"));
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
@@ -114,7 +114,8 @@ Task("__RestoreNugetPackages")
 Task("__StageOutput")
 	.Does(() =>
 {
-	CopyDirectoryVerbose(srcDir.ToString() + @"/NCrawler/bin/" + configuration, outputDir.ToString() + @"/NCrawler/");
+	CreateDirectory(outputDir.ToString() + @"/NCrawler/");
+	CopyDirectoryVerbose("./NCrawler/bin/" + configuration, outputDir.ToString() + @"/NCrawler/");
 	CleanAssemblyXmlFiles(outputDir.ToString());
 });
 
@@ -155,14 +156,16 @@ Task("__RunTests")
 	.Does(() =>
 {
 	var unitTestFiles = new string[] {
-		srcDir.ToString() + "/NCrawler.Toxy.Tests/bin" + configuration + "/NCrawler.Toxy.Tests.dll",
-		srcDir.ToString() + "/NCrawler.LanguageDetection.Google.Tests/bin" + configuration + "/NCrawler.LanguageDetection.Tests.dll",
-		srcDir.ToString() + "/NCrawler.HtmlProcessor.Tests/bin" + configuration + "/NCrawler.HtmlProcessor.Tests.dll"
-
+		"./NCrawler.Toxy.Tests/bin/" + configuration + "/NCrawler.Toxy.Tests.dll",
+		"./NCrawler.LanguageDetection.Google.Tests/bin/" + configuration + "/NCrawler.LanguageDetection.Google.Tests.dll",
+		"./NCrawler.HtmlProcessor.Tests/bin/" + configuration + "/NCrawler.HtmlProcessor.Tests.dll",
+		"./NCrawler.Robots.Tests/bin/" + configuration + "/NCrawler.Robots.Tests.dll",
+		"./NCrawler.Flurl.Tests/bin/" + configuration + "/NCrawler.Flurl.Tests.dll",
+		"./NCrawler.Robots.Tests/bin/" + configuration + "/NCrawler.Robots.Tests.dll",
+		"./NCrawler.SitemapProcessor.Tests/bin/" + configuration + "/NCrawler.SitemapProcessor.Tests.dll"		
 	};
 	NUnit3(unitTestFiles, new NUnit3Settings { 
 		TeamCity=false, 
-		Where="cat!=IntegrationTest",
 		Verbose=true,
 		NoResults=true,
 		Framework="net-4.5"
