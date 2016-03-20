@@ -155,7 +155,10 @@ Task("__RunTests")
 	.Does(() =>
 {
 	var unitTestFiles = new string[] {
-		srcDir.ToString() + "/NCrawler.Toxy.Tests/bin" + configuration + "/NCrawler.Toxy.Tests.dll"
+		srcDir.ToString() + "/NCrawler.Toxy.Tests/bin" + configuration + "/NCrawler.Toxy.Tests.dll",
+		srcDir.ToString() + "/NCrawler.LanguageDetection.Google.Tests/bin" + configuration + "/NCrawler.LanguageDetection.Tests.dll",
+		srcDir.ToString() + "/NCrawler.HtmlProcessor.Tests/bin" + configuration + "/NCrawler.HtmlProcessor.Tests.dll"
+
 	};
 	NUnit3(unitTestFiles, new NUnit3Settings { 
 		TeamCity=false, 

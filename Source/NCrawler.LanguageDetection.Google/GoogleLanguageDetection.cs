@@ -1,44 +1,36 @@
 using System;
-using System.Globalization;
+using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Json;
-using System.Text;
-
-using Autofac;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
 using NCrawler.Extensions;
-using NCrawler.Interfaces;
-using NCrawler.Services;
 using NCrawler.Utils;
+
+using NTextCat;
 
 namespace NCrawler.LanguageDetection.Google
 {
-	public class GoogleLanguageDetection : IPipelineStepWithTimeout
+	public class GoogleLanguageDetection : IPipelineStep
 	{
-		#region Constants
+		public const string LanguagePropertyName = "Language";
+		private readonly RankedLanguageIdentifier _identifier;
 
-		private const int MaxPostSize = 900;
-
-		#endregion
-
-		#region Readonly & Static Fields
-
-		private readonly ILog _logger;
-
-		#endregion
-
-		#region Constructors
-
-		public GoogleLanguageDetection()
+		public GoogleLanguageDetection(int maxDegreeOfParallelism)
 		{
-			_logger = NCrawlerModule.Container.Resolve<ILog>();
+			MaxDegreeOfParallelism = maxDegreeOfParallelism;
+
+			Assembly assembly = Assembly.GetExecutingAssembly();
+			string resourceName = "NCrawler.LanguageDetection.Google.Core14.profile.xml";
+			using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+			{
+				RankedLanguageIdentifierFactory factory = new RankedLanguageIdentifierFactory();
+				_identifier = factory.Load(stream);
+			}
 		}
 
-		#endregion
-
-		#region IPipelineStepWithTimeout Members
-
-		public void Process(Crawler crawler, PropertyBag propertyBag)
+		public Task<bool> Process(ICrawler crawler, PropertyBag propertyBag)
 		{
 			AspectF.Define.
 				NotNull(crawler, "crawler").
@@ -47,75 +39,19 @@ namespace NCrawler.LanguageDetection.Google
 			string content = propertyBag.Text;
 			if (content.IsNullOrEmpty())
 			{
-				return;
+				return Task.FromResult(true);
 			}
 
-			string contentLookupText = content.Max(MaxPostSize);
-			string encodedRequestUrlFragment =
-				"http://ajax.googleapis.com/ajax/services/language/detect?v=1.0&q={0}".FormatWith(contentLookupText);
-
-			_logger.Verbose("Google language detection using: {0}", encodedRequestUrlFragment);
-
-			try
+			IEnumerable<Tuple<LanguageInfo, double>> languages = _identifier.Identify(content);
+			Tuple<LanguageInfo, double> mostCertainLanguage = languages.FirstOrDefault();
+			if (mostCertainLanguage != null)
 			{
-				IWebDownloader downloader = NCrawlerModule.Container.Resolve<IWebDownloader>();
-				PropertyBag result = downloader.Download(new CrawlStep(new Uri(encodedRequestUrlFragment), 0), null, DownloadMethod.Get);
-				if (result.IsNull())
-				{
-					return;
-				}
-
-				using (Stream responseReader = result.GetResponse())
-				using (StreamReader reader = new StreamReader(responseReader))
-				{
-					string json = reader.ReadLine();
-					using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(json)))
-					{
-						DataContractJsonSerializer ser =
-							new DataContractJsonSerializer(typeof (LanguageDetector));
-						LanguageDetector detector = ser.ReadObject(ms) as LanguageDetector;
-
-						if (!detector.IsNull())
-						{
-							CultureInfo culture = CultureInfo.GetCultureInfo(detector.ResponseData.Language);
-							propertyBag["Language"].Value = detector.ResponseData.Language;
-							propertyBag["LanguageCulture"].Value = culture;
-						}
-					}
-				}
+				propertyBag[LanguagePropertyName].Value = mostCertainLanguage.Item1.Iso639_3;
 			}
-			catch (Exception ex)
-			{
-				_logger.Error("Error during google language detection, the error was: {0}", ex.ToString());
-			}
+
+			return Task.FromResult(true);
 		}
 
-		public TimeSpan ProcessorTimeout => TimeSpan.FromSeconds(10);
-
-		#endregion
-	}
-
-	[Serializable]
-	public class LanguageDetector
-	{
-		#region Fields
-
-		public LanguageDetectionResponseData ResponseData = new LanguageDetectionResponseData();
-		public string ResponseDetails;
-		public string ResponseStatus;
-
-		#endregion
-	}
-
-	[Serializable]
-	public class LanguageDetectionResponseData
-	{
-		#region Fields
-
-		public string Confidence;
-		public string IsReliable;
-		public string Language;
-
-		#endregion
+		public int MaxDegreeOfParallelism { get; }
 	}
 }
