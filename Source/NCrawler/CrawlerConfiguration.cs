@@ -177,7 +177,7 @@ namespace NCrawler
 			return AddPipelineStep(new LambdaFilterPipelineStep(predicate, maxDegreeOfParallelism));
 		}
 
-		public CrawlerConfiguration RegexFilter(Regex regex)
+		public CrawlerConfiguration UrlRegexFilter(Regex regex)
 		{
 			return Where((crawler, propertyBag) => regex.Match(propertyBag.Step.Uri.ToString()).Success);
 		}
