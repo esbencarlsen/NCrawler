@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCrawler", "NCrawler\NCrawler.csproj", "{5E4DF149-F650-4152-8410-586FB9CCF644}"
 EndProject
@@ -73,6 +73,7 @@ Global
 		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8ADB9E8-359E-4CFB-97D7-59E1E705DE04}.Release|Any CPU.Build.0 = Release|Any CPU
@@ -82,6 +83,7 @@ Global
 		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E707ADD-8F93-4E65-BAE7-534D4C844060}.Release|Any CPU.Build.0 = Release|Any CPU
@@ -100,6 +102,7 @@ Global
 		{5BC126AF-4E49-4DEA-B013-E05CBC2C67F4}.Release|x86.ActiveCfg = Release|Any CPU
 		{4C550C30-9CCD-4CAB-8E9C-C1A4D6619953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C550C30-9CCD-4CAB-8E9C-C1A4D6619953}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4C550C30-9CCD-4CAB-8E9C-C1A4D6619953}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{4C550C30-9CCD-4CAB-8E9C-C1A4D6619953}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{4C550C30-9CCD-4CAB-8E9C-C1A4D6619953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C550C30-9CCD-4CAB-8E9C-C1A4D6619953}.Release|Any CPU.Build.0 = Release|Any CPU

@@ -25,7 +25,7 @@ namespace NCrawler
 			RemoveDotNetServicePointRestrictions();
 			SetDefaultServicePointManagerSettings();
 
-			Logger = new LoggerConfiguration().MinimumLevel.Verbose().WriteTo.ColoredConsole().CreateLogger();
+			Logger = new LoggerConfiguration().MinimumLevel.Verbose().WriteTo.LiterateConsole().CreateLogger();
 		}
 
 		public ILogger Logger { get; set; }
