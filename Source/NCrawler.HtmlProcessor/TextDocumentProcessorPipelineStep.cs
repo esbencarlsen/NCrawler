@@ -13,16 +13,10 @@ namespace NCrawler.HtmlProcessor
 			MaxDegreeOfParallelism = maxDegreeOfParallelism;
 		}
 
-		#region Class Methods
-
 		private static bool IsTextContent(string contentType)
 		{
 			return contentType.StartsWith("text/plain", StringComparison.OrdinalIgnoreCase);
 		}
-
-		#endregion
-
-		#region IPipelineStep Members
 
 		private const string RegexPattern = @"http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?";
 		private readonly Regex _urlMatcher = new Regex(RegexPattern, RegexOptions.ExplicitCapture | RegexOptions.Compiled);
@@ -50,7 +44,5 @@ namespace NCrawler.HtmlProcessor
 		}
 
 		public int MaxDegreeOfParallelism { get; }
-
-		#endregion
 	}
 }

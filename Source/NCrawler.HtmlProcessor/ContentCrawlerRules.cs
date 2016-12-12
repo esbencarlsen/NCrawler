@@ -24,8 +24,6 @@ namespace NCrawler.HtmlProcessor
 	/// </summary>
 	public abstract class ContentCrawlerRules
 	{
-		#region Readonly & Static Fields
-
 		/// <summary>
 		/// </summary>
 		private readonly Dictionary<string, string> _filterLinksRules;
@@ -33,10 +31,6 @@ namespace NCrawler.HtmlProcessor
 		/// <summary>
 		/// </summary>
 		private readonly Dictionary<string, string> _filterTextRules;
-
-		#endregion
-
-		#region Constructors
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ContentCrawlerRules"/> class. 
@@ -60,10 +54,6 @@ namespace NCrawler.HtmlProcessor
 			_filterLinksRules = filterLinksRules;
 		}
 
-		#endregion
-
-		#region Instance Properties
-
 		public IEnumerable<ISubstitution> Substitutions { get; set; }
 
 		/// <summary>
@@ -83,10 +73,6 @@ namespace NCrawler.HtmlProcessor
 		protected bool HasTextStripRules => !_filterTextRules.IsNull() && _filterTextRules.Count > 0;
 
 		protected bool HasSubstitutionRules => !Substitutions.IsNull();
-
-		#endregion
-
-		#region Instance Methods
 
 		/// <summary>
 		/// </summary>
@@ -119,10 +105,6 @@ namespace NCrawler.HtmlProcessor
 				: original;
 		}
 
-		#endregion
-
-		#region Class Methods
-
 		/// <summary>
 		/// Basically strips everything between the start marker and the end marker
 		/// The start marker is the Key in the Dictionary<string, string>, the end marker is the Value
@@ -152,7 +134,5 @@ namespace NCrawler.HtmlProcessor
 
 			return content;
 		}
-
-		#endregion
 	}
 }

@@ -11,8 +11,6 @@ namespace NCrawler.Console
 {
 	internal class Program
 	{
-		#region Class Methods
-
 		[Action]
 		public static void Crawl([Required] string url,
 			[Optional(1, AltNames = new[]{ "threads" }, Description = "Number of concurrent threads to use in crawl")] int threadCount,
@@ -51,7 +49,5 @@ namespace NCrawler.Console
 		{
 			Consolery.Run(typeof (Program), args);
 		}
-
-		#endregion
 	}
 }

@@ -7,8 +7,6 @@ namespace NCrawler.Console.Extensions
 {
 	public static class AspectExtensions
 	{
-		#region Class Methods
-
 		[DebuggerStepThrough]
 		public static AspectF Between(this AspectF aspect, string parameterName, int actualValue, int fromValue, int toValue)
 		{
@@ -40,7 +38,5 @@ namespace NCrawler.Console.Extensions
 
 			return aspect;
 		}
-
-		#endregion
 	}
 }

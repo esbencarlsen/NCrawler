@@ -7,8 +7,6 @@ namespace NCrawler.HtmlProcessor.Extensions
 {
 	public static class ExtendedHtmlUtility
 	{
-		#region Readonly & Static Fields
-
 		/// <summary>
 		/// Static Regular Expression to match Html Entities in encoded text
 		/// Looking for named-entity, decimal or hexadecimal formats
@@ -19,10 +17,6 @@ namespace NCrawler.HtmlProcessor.Extensions
 		private static readonly Lazy<Regex> s_entityResolver = new Lazy<Regex>(() =>
 			new Regex(@"([&][#](?'decimal'[0-9]+);)|([&][#][(x|X)](?'hex'[0-9a-fA-F]+);)|([&](?'html'\w+);)",
 				RegexOptions.Compiled), true);
-
-		#endregion
-
-		#region Class Methods
 
 		/// <summary>
 		/// For the 'hexadecimal' format &amp;#x233; we need to be able 
@@ -975,7 +969,5 @@ namespace NCrawler.HtmlProcessor.Extensions
 
 			return "X";
 		}
-
-		#endregion
 	}
 }

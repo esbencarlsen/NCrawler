@@ -10,14 +10,8 @@ namespace NCrawler
 	[DataContract]
 	public class PropertyBag
 	{
-		#region Fields
-
 		// A Hashtable to contain the properties in the bag
 		private Dictionary<string, Property> _objPropertyCollection = new Dictionary<string, Property>();
-
-		#endregion
-
-		#region Instance Indexers
 
 		/// <summary>
 		/// Indexer which retrieves a property from the PropertyBag based on 
@@ -53,10 +47,6 @@ namespace NCrawler
 				return objProperty;
 			}
 		}
-
-		#endregion
-
-		#region Instance Properties
 
 		[DataMember]
 		public string CharacterSet { get; set; }
@@ -124,20 +114,10 @@ namespace NCrawler
 		[DataMember]
 		public string UserAgent { get; set; }
 
-		#endregion
-
-		#region Nested type: Property
-
 		public class Property
 		{
-			#region Fields
-
 			/// Field to hold the name of the property 
 			private object _value;
-
-			#endregion
-
-			#region Constructors
 
 			/// Event fires immediately prior to value changes
 			/// <summary>
@@ -151,10 +131,6 @@ namespace NCrawler
 				Owner = owner;
 				_value = null;
 			}
-
-			#endregion
-
-			#region Instance Properties
 
 			/// <summary>
 			/// The name of the Property
@@ -191,10 +167,6 @@ namespace NCrawler
 					}
 				}
 			}
-
-			#endregion
 		}
-
-		#endregion
 	}
 }

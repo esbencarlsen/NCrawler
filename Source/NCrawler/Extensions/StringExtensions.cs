@@ -4,8 +4,6 @@ namespace NCrawler.Extensions
 {
 	public static class StringExtensions
 	{
-		#region Class Methods
-
 		public static bool IsNullOrEmpty(this string source)
 		{
 			return string.IsNullOrEmpty(source);
@@ -18,7 +16,5 @@ namespace NCrawler.Extensions
 
 			return source.Length > maxLength ? source.Substring(0, maxLength) : source;
 		}
-
-		#endregion
 	}
 }

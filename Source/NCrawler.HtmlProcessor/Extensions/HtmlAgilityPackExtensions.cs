@@ -28,8 +28,6 @@ namespace NCrawler.HtmlProcessor.Extensions
 			}
 		}
 
-		#region Class Methods
-
 		public static string ExtractText(this HtmlDocument htmlDocument)
 		{
 			using (StringWriter sw = new StringWriter(CultureInfo.InvariantCulture))
@@ -121,19 +119,11 @@ namespace NCrawler.HtmlProcessor.Extensions
 					break;
 			}
 		}
-
-		#endregion
 	}
 
 	public class DocumentWithLinks
 	{
-		#region Readonly & Static Fields
-
 		private readonly HtmlDocument _doc;
-
-		#endregion
-
-		#region Constructors
 
 		/// <summary>
 		///     Creates an instance of a DocumentWithLinkedFiles.
@@ -148,10 +138,6 @@ namespace NCrawler.HtmlProcessor.Extensions
 			GetLinks();
 			GetReferences();
 		}
-
-		#endregion
-
-		#region Class Methods
 
 		private static string ParseLink(HtmlNode node, string name)
 		{
@@ -170,10 +156,6 @@ namespace NCrawler.HtmlProcessor.Extensions
 			return att.Value;
 		}
 
-		#endregion
-
-		#region Instance Properties
-
 		/// <summary>
 		///     Gets a list of links as they are declared in the HTML document.
 		/// </summary>
@@ -183,10 +165,6 @@ namespace NCrawler.HtmlProcessor.Extensions
 		///     Gets a list of reference links to other HTML documents, as they are declared in the HTML document.
 		/// </summary>
 		public IEnumerable<string> References { get; private set; }
-
-		#endregion
-
-		#region Instance Methods
 
 		private void GetLinks()
 		{
@@ -224,7 +202,5 @@ namespace NCrawler.HtmlProcessor.Extensions
 				Distinct().
 				ToArray();
 		}
-
-		#endregion
 	}
 }

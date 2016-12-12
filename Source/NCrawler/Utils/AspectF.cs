@@ -7,8 +7,6 @@ namespace NCrawler.Utils
 {
 	public class AspectF
 	{
-		#region Fields
-
 		/// <summary>
 		/// Chain of aspects to invoke
 		/// </summary>
@@ -18,10 +16,6 @@ namespace NCrawler.Utils
 		/// The acrual work delegate that is finally called
 		/// </summary>
 		internal Delegate WorkDelegate;
-
-		#endregion
-
-		#region Instance Methods
 
 		/// <summary>
 		/// Create a composition of function e.g. f(g(x))
@@ -167,10 +161,6 @@ namespace NCrawler.Utils
 			return returnValue;
 		}
 
-		#endregion
-
-		#region Class Properties
-
 		/// <summary>
 		/// Handy property to start writing aspects using fluent style
 		/// </summary>
@@ -179,7 +169,5 @@ namespace NCrawler.Utils
 			[DebuggerStepThrough]
 			get { return new AspectF(); }
 		}
-
-		#endregion
 	}
 }

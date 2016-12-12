@@ -4,14 +4,8 @@ namespace NCrawler.Extensions
 {
 	public static class UrlExtensions
 	{
-		#region Readonly & Static Fields
-
 		private static readonly string s_httpScheme = Uri.UriSchemeHttp + "://";
 		private static readonly string s_httpsScheme = Uri.UriSchemeHttp + "://";
-
-		#endregion
-
-		#region Class Methods
 
 		public static string NormalizeUrl(this string url, string baseUrl)
 		{
@@ -74,7 +68,5 @@ namespace NCrawler.Extensions
 				? new Uri(uriString.Substring(0, index))
 				: uri;
 		}
-
-		#endregion
 	}
 }

@@ -6,8 +6,6 @@ namespace NCrawler.Extensions
 {
 	public static class UriExtensions
 	{
-		#region Class Methods
-
 		public static string GetUrlKeyString(this Uri uri, UriComponents uriSensitivity)
 		{
 			// Get complete url
@@ -42,7 +40,5 @@ namespace NCrawler.Extensions
 
 			return uriBase.Host.Equals(uri.Host, StringComparison.OrdinalIgnoreCase);
 		}
-
-		#endregion
 	}
 }

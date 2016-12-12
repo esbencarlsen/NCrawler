@@ -16,21 +16,13 @@ namespace NConsoler
 	/// </summary>
 	public sealed class Consolery
 	{
-		#region Readonly & Static Fields
-
 		private readonly List<MethodInfo> _actionMethods = new List<MethodInfo>();
 		private readonly string[] _args;
 		private readonly IMessenger _messenger;
 		private readonly Type _targetType;
 
-		#endregion
-
-		#region Constructors
-
 		private Consolery(Type targetType, string[] args, IMessenger messenger)
 		{
-			#region Parameter Validation
-
 			if (targetType == null)
 			{
 				throw new ArgumentNullException(nameof(targetType));
@@ -43,8 +35,6 @@ namespace NConsoler
 			{
 				throw new ArgumentNullException(nameof(messenger));
 			}
-
-			#endregion
 
 			_targetType = targetType;
 			_args = args;
@@ -60,15 +50,7 @@ namespace NConsoler
 			}
 		}
 
-		#endregion
-
-		#region Instance Properties
-
 		private bool IsMulticommand => _actionMethods.Count > 1;
-
-		#endregion
-
-		#region Instance Methods
 
 		private object[] BuildParameterArray(MethodInfo method)
 		{
@@ -385,10 +367,6 @@ namespace NConsoler
 				CheckOptionalParametersAltNamesAreNotDuplicated(method);
 			}
 		}
-
-		#endregion
-
-		#region Class Methods
 
 		/// <summary>
 		/// Runs an appropriate Action method.
@@ -787,31 +765,17 @@ namespace NConsoler
 			throw new ArgumentOutOfRangeException(String.Format("Type {0} is unknown", type.Name));
 		}
 
-		#endregion
-
-		#region Nested type: ParameterData
-
 		private struct ParameterData
 		{
-			#region Readonly & Static Fields
-
 			public readonly int Position;
 			public readonly Type Type;
-
-			#endregion
-
-			#region Constructors
 
 			public ParameterData(int position, Type type)
 			{
 				Position = position;
 				Type = type;
 			}
-
-			#endregion
 		}
-
-		#endregion
 	}
 
 	/// <summary>
@@ -819,11 +783,7 @@ namespace NConsoler
 	/// </summary>
 	public interface IMessenger
 	{
-		#region Instance Methods
-
 		void Write(string message);
-
-		#endregion
 	}
 
 	/// <summary>
@@ -831,14 +791,10 @@ namespace NConsoler
 	/// </summary>
 	public class ConsoleMessenger : IMessenger
 	{
-		#region IMessenger Members
-
 		public void Write(string message)
 		{
 			Console.WriteLine(message);
 		}
-
-		#endregion
 	}
 
 	/// <summary>
@@ -847,13 +803,7 @@ namespace NConsoler
 	[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
 	public sealed class ActionAttribute : Attribute
 	{
-		#region Fields
-
 		private string _description = String.Empty;
-
-		#endregion
-
-		#region Constructors
 
 		public ActionAttribute()
 		{
@@ -864,10 +814,6 @@ namespace NConsoler
 			_description = description;
 		}
 
-		#endregion
-
-		#region Instance Properties
-
 		/// <summary>
 		/// Description is used for help messages
 		/// </summary>
@@ -877,8 +823,6 @@ namespace NConsoler
 
 			set { _description = value; }
 		}
-
-		#endregion
 	}
 
 	/// <summary>
@@ -887,21 +831,11 @@ namespace NConsoler
 	[AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
 	public class ParameterAttribute : Attribute
 	{
-		#region Fields
-
 		private string _description = String.Empty;
-
-		#endregion
-
-		#region Constructors
 
 		protected ParameterAttribute()
 		{
 		}
-
-		#endregion
-
-		#region Instance Properties
 
 		/// <summary>
 		/// Description is used in help message
@@ -912,8 +846,6 @@ namespace NConsoler
 
 			set { _description = value; }
 		}
-
-		#endregion
 	}
 
 	/// <summary>
@@ -921,8 +853,6 @@ namespace NConsoler
 	/// </summary>
 	public sealed class OptionalAttribute : ParameterAttribute
 	{
-		#region Constructors
-
 		/// <param name="defaultValue">Default value if client doesn't pass this value</param>
 		public OptionalAttribute(object defaultValue)
 		{
@@ -930,14 +860,8 @@ namespace NConsoler
 			AltNames = new string[0];
 		}
 
-		#endregion
-
-		#region Instance Properties
-
 		public string[] AltNames { get; set; }
 		public object Default { get; private set; }
-
-		#endregion
 	}
 
 	/// <summary>
@@ -952,8 +876,6 @@ namespace NConsoler
 	/// </summary>
 	public sealed class NConsolerException : Exception
 	{
-		#region Constructors
-
 		public NConsolerException()
 		{
 		}
@@ -967,7 +889,5 @@ namespace NConsoler
 			: base(String.Format(message, arguments))
 		{
 		}
-
-		#endregion
 	}
 }

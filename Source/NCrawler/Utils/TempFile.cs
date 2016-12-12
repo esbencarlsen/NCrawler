@@ -7,8 +7,6 @@ namespace NCrawler.Utils
 	/// </summary>
 	public class TempFile : DisposableBase
 	{
-		#region Constructors
-
 		public TempFile()
 		{
 			FileName = GetTempFileName();
@@ -19,16 +17,8 @@ namespace NCrawler.Utils
 			FileName = fileName;
 		}
 
-		#endregion
-
-		#region Instance Properties
-
 		public string FileName { get; set; }
 		public string Tag { get; set; }
-
-		#endregion
-
-		#region Instance Methods
 
 		/// <summary>
 		/// Do cleanup here
@@ -45,15 +35,9 @@ namespace NCrawler.Utils
 			fi.Delete();
 		}
 
-		#endregion
-
-		#region Class Methods
-
 		public static string GetTempFileName()
 		{
 			return Path.GetTempFileName();
 		}
-
-		#endregion
 	}
 }
